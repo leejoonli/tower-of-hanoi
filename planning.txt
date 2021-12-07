@@ -1,0 +1,47 @@
+/*----- constants -----*/
+disks
+
+/*----- app's state (variables) -----*/
+disk div containers
+tower div containers
+
+/*----- cached element references -----*/
+about game button
+input
+start button
+disk div element
+tower div element
+tower container div element
+reset button
+
+/*----- event listeners -----*/
+start button
+    init function
+    render function
+reset button
+    render function
+about game button
+    modal to display rules of game
+disk div element
+    select which div element
+    move selected div element
+tower div element
+    if disk div element move is valid
+        if disk div element moves in another tower div space
+            remove disk div element from previous tower div element
+            add disk div element to current tower div element
+    else disk div element moves back to previous tower div it was taken from
+
+/*----- functions -----*/
+
+init function
+
+render function
+
+select function
+
+track function
+
+move function
+
+win function
