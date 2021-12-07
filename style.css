@@ -11,8 +11,11 @@
     display: flex;
     margin: auto;
     width: 50%;
+    padding: 0;
 }
 
 .towerSection {
     margin: auto;
+    /* border: solid red; */
+    padding: 0;
 }

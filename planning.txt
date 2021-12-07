@@ -25,6 +25,7 @@ about game button
 disk div element
     select which div element
     move selected div element
+    check to see if win condition is met
 tower div element
     if disk div element move is valid
         if disk div element moves in another tower div space
