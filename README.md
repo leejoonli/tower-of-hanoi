@@ -1,10 +1,22 @@
 # Tower of Hanoi
 
-## Project Description 
+## Project Description
+
 Browser based interactive puzzle
 Only one disk can be moved at a time
 Every move involves taking the top disk from one of the stacks and placing it on top of another stack or an empty stack
 No disk can be put on top of a smaller disk
+
+## Planning Process
+
+Scaffold out html elements
+State variables
+Query DOM elements
+Create init function and render function
+See if the element can be interacted with
+Track the element that is clicked
+Be able to move the selected element
+Move the selected element based on the rules of the game
 
 ## Wire Frames
 
