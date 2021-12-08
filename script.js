@@ -12,6 +12,7 @@ let gameFinished;
 let stackHeight;
 // selected disk
 let selectDisk;
+let selectTower;
 
 /*----- cached element references -----*/
 const aboutGameBtn = document.querySelector('.aboutGame');
@@ -26,7 +27,7 @@ const stackThree = document.querySelector('.stackThree');
 /*----- event listeners -----*/
 startGame.addEventListener('click', init);
 // resetGameBtn.addEventListener('click', render);
-towerContainer.addEventListener('click', select);
+towerContainer.addEventListener('click', disk);
 stackOne.addEventListener('click', move);
 stackTwo.addEventListener('click', move);
 stackThree.addEventListener('click', move);
@@ -34,17 +35,19 @@ stackThree.addEventListener('click', move);
 /*----- functions -----*/
 // init function
     // sets the game to the start with all the disks on the left side and ordered
-function init() {
+function init(event) {
+    // event.preventDefault();
     // set win condition to false
     gameFinished = false;
-    startPos = false;
+    // startPos = false;
     stackHeight = parseInt(towerHeight.value);
     render();
-    track();
+    // track();
 }
 
 // render function
-function render() {
+function render(event) {
+    // event.preventDefault();
     // clear current tower
     // while(stackOne.contains(div)) {
     //     stackOne.removeChild();
@@ -86,12 +89,21 @@ function track(event) {
     // });
 }
 
-function select(event) {
+function disk(event) {
     if(event.target.classList.contains('disk')) {
         selectDisk = event.target;
+    }
+    tower(event, selectDisk);
+}
+
+function tower(event, selectDisk) {
+    if(event.target.classList.contains('towerSection')) {
+        selectTower = event.target;
+        selectTower.appendChild(selectDisk);
     }
 }
 
 function move(event) {
-    console.log(event.target);
+    
+    // console.log(event.target);
 }

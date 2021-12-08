@@ -24,25 +24,24 @@ about game button
     modal to display rules of game
 disk div element
     select which div element
-    move selected div element
-    check to see if win condition is met
-tower div element
-    if disk div element move is valid
-        if disk div element moves in another tower div space
-            remove disk div element from previous tower div element
-            add disk div element to current tower div element
-    else disk div element moves back to previous tower div it was taken from
+    select where to put it
+        check to see if valid move <- YOU ARE HERE
+            move disk div element to tower div element
+            check win condition
+                if win then end game
+                else continue
+        else do nothing
 
 /*----- functions -----*/
 
-init function
+init function [x] for now
 
-render function
+render function [x] for now
+ 
+select function [x] for now
 
-select function
+track function <- not implementing currently
 
-track function
-
-move function
+move function <- YOU ARE HERE
 
 win function
