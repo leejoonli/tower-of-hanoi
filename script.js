@@ -1,7 +1,8 @@
 /*----- constants -----*/
 class DISK {
-    constructor(num, width) {
+    constructor(num, name ,width) {
         this.num = num;
+        this.name = `testing ${name}`;
         this.width = width;
     }
 }
@@ -14,6 +15,9 @@ let stackHeight;
 // selected disk
 let selectDisk;
 let selectTower;
+let stackOneArr;
+let stackTwoArr;
+let stackThreeArr;
 
 /*----- cached element references -----*/
 const aboutGameBtn = document.querySelector('.aboutGame');
@@ -29,9 +33,9 @@ const stackThree = document.querySelector('.stackThree');
 startGame.addEventListener('click', init);
 // resetGameBtn.addEventListener('click', render);
 towerContainer.addEventListener('click', disk);
-stackOne.addEventListener('click', move);
-stackTwo.addEventListener('click', move);
-stackThree.addEventListener('click', move);
+// stackOne.addEventListener('click', move);
+// stackTwo.addEventListener('click', move);
+// stackThree.addEventListener('click', move);
 
 /*----- functions -----*/
 // init function
@@ -40,7 +44,9 @@ function init(event) {
     // event.preventDefault();
     // set win condition to false
     gameFinished = false;
-    // startPos = false;
+    stackOneArr = [];
+    stackTwoArr = [];
+    stackThreeArr = [];
     stackHeight = parseInt(towerHeight.value);
     render();
     // track();
@@ -49,6 +55,7 @@ function init(event) {
 // render function
 function render(event) {
     // event.preventDefault();
+
     // clear current tower
     // while(stackOne.contains(div)) {
     //     stackOne.removeChild();
@@ -56,18 +63,18 @@ function render(event) {
 
     // create as many disks as the input value
     for (let i = 1; i < stackHeight + 1; i++) {
+        // create new object
+        const disk = new DISK(i, i, i);
         // create div element
-        const disk = document.createElement('div');
-        // add class to div element
-        disk.classList.add(i, 'disk');
-        // add css to div element for testing purposes
-        disk.style.paddingLeft = '25px';
-        disk.style.paddingRight = '25px';
-        disk.style.border = 'solid red';
+        const placeholderDisk = document.createElement('div');
         // fill inner text of div element for testing purposes
-        disk.innerText = 'testing' + i;
+        placeholderDisk.innerText = disk.name;
+        // add class to div element
+        placeholderDisk.classList.add('disk');
+        // push disk to stackOneArr
+        stackOneArr.push(disk);
         // append the div element to the parent div element
-        stackOne.appendChild(disk);
+        stackOne.appendChild(placeholderDisk);
     }
 }
 
@@ -93,6 +100,7 @@ function render(event) {
 function disk(event) {
     if(event.target.classList.contains('disk')) {
         selectDisk = event.target;
+        // console.log(selectDisk);
     }
     tower(event, selectDisk);
 }
@@ -100,11 +108,12 @@ function disk(event) {
 function tower(event, selectDisk) {
     if(event.target.classList.contains('towerSection')) {
         selectTower = event.target;
-        selectTower.prepend(selectDisk);
+        if(event.target.classList.contains('stackTwo')) {
+            stackOneArr.shift();
+            stackTwoArr.unshift(stackOneArr[0]);
+            console.log(stackTwoArr);
+            selectTower.prepend(selectDisk);
+        }
+        // console.log(selectTower);
     }
-}
-
-function move(event) {
-    
-    // console.log(event.target);
 }
