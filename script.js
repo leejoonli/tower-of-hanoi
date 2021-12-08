@@ -101,15 +101,20 @@ function render(event) {
 
 //&& stackOneArr[0] == event.target.classList[1]
 function disk(event) {
-    if(event.target.classList[1] == stackOneArr[0].num) {
-        selectDisk = event.target;
+    if(event.target.classList.contains('disk')) {
+        if(event.target.classList[1] == stackOneArr[0].num) {
+            selectDisk = event.target;
+        }
+        else if(event.target.classList[1] == stackTwoArr[0].num) {
+            selectDisk = event.target;
+        }
+        else if(event.target.classList[1] == stackThreeArr[0].num) {
+            selectDisk = event.target;
+        }
     }
-    // else if(event.target.classList[1] == stackTwoArr[0].num) {
-    //     selectDisk = event.target;
-    // }
-    // else if(event.target.classList[1] == stackThreeArr[0].num) {
-    //     selectDisk = event.target;
-    // }
+    else {
+        return;
+    }
 }
 
 function pickTower(event) {
@@ -131,7 +136,6 @@ function tower1(event) {
     // conditional to see if user clicked on any tower section
     selectTower = event.target;
     if(selectDisk.parentElement.classList.contains('stackTwo')) {
-        // console.log(selectTower);
         if(stackOneArr[0].length === 0 && selectDisk !== undefined) {
             // check the width of the first element in stack one and compare it to the width of the first element in stack two
             // if the width is greater then return early
@@ -140,7 +144,7 @@ function tower1(event) {
             // console.log(stackOneArr, stackTwoArr);
             stackOne.prepend(selectDisk);
         }
-        else if(parseInt(selectDisk.classList[0]) < stackOneArr[0].num) {
+        else if(parseInt(selectDisk.classList[1]) < stackOneArr[0].num) {
             stackOneArr.unshift(stackTwoArr[0]);
             stackTwoArr.shift();
             stackOne.prepend(selectDisk);
@@ -150,7 +154,6 @@ function tower1(event) {
         }
     }
     if(event.target.classList.contains('stackThree')) {
-        selectTower = event.target;
         // console.log(selectTower);
         if(stackThreeArr[0] == undefined && selectDisk !== undefined) {
             // check the width of the first element in stack one and compare it to the width of the first element in stack three
