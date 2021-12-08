@@ -1,21 +1,37 @@
-/* * {
+* {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-} */
+}
+
+body {
+    font-size: 2rem;
+}
 
 .gameContainer {
     display: flex;
     margin: auto;
-    width: 50%;
+    height: 50%;
     padding: 0;
 }
 
 .towerSection {
     margin: auto;
-    /* border: solid red; */
+    border: 1px solid red;
     padding: 0;
+    height: 100%;
+    flex-basis: 33%;
+}
+
+.towerHeight {
+    border: 1px solid red;
+    font-size: 20px;
+}
+
+.aboutGame, .resetGame, .initGame {
+    border: 1px solid red;
+    font-size: 20px;
 }

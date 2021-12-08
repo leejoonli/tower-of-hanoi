@@ -27,6 +27,9 @@ const stackThree = document.querySelector('.stackThree');
 startGame.addEventListener('click', init);
 // resetGameBtn.addEventListener('click', render);
 towerContainer.addEventListener('click', select);
+stackOne.addEventListener('click', move);
+stackTwo.addEventListener('click', move);
+stackThree.addEventListener('click', move);
 
 /*----- functions -----*/
 // init function
@@ -86,6 +89,9 @@ function track(event) {
 function select(event) {
     if(event.target.classList.contains('disk')) {
         selectDisk = event.target;
-        // console.log(selectDisk);
     }
+}
+
+function move(event) {
+    console.log(event.target);
 }
