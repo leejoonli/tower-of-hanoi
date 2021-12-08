@@ -1,9 +1,10 @@
 /*----- constants -----*/
-// class DISK {
-//     constructor(num) {
-//         this.num = num
-//     }
-// }
+class DISK {
+    constructor(num, width) {
+        this.num = num;
+        this.width = width;
+    }
+}
 
 /*----- app's state (variables) -----*/
 // game win condition
@@ -71,7 +72,7 @@ function render(event) {
 }
 
 // https://stackoverflow.com/questions/24050738/javascript-how-to-dynamically-move-div-by-clicking-and-dragging
-function track(event) {
+// function track(event) {
     // towerContainer.addEventListener('mousedown', function() {
     //     moved = false;
     //     // console.log('down', moved);
@@ -87,7 +88,7 @@ function track(event) {
     //     console.log(event);
     //     move(event);
     // });
-}
+// }
 
 function disk(event) {
     if(event.target.classList.contains('disk')) {
@@ -99,7 +100,7 @@ function disk(event) {
 function tower(event, selectDisk) {
     if(event.target.classList.contains('towerSection')) {
         selectTower = event.target;
-        selectTower.appendChild(selectDisk);
+        selectTower.prepend(selectDisk);
     }
 }
 

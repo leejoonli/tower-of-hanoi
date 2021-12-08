@@ -1,9 +1,15 @@
 /*----- constants -----*/
-disks
+disk class
 
 /*----- app's state (variables) -----*/
 disk div containers
-tower div containers
+tower div containers -> array
+
+/*-----------------------------------*/
+    stackOne arr
+    stackTwo arr
+    stackThree arr
+/*-----------------------------------*/
 
 /*----- cached element references -----*/
 about game button
@@ -32,6 +38,12 @@ disk div element
                 else continue
         else do nothing
 
+make objects instead of dom elements to store data
+make div disk elements
+set innerText of div disk elements to objects key/property
+push it to the stackOne array
+    when div disk element moves change the arrays to match the html
+
 /*----- functions -----*/
 
 init function [x] for now
@@ -40,7 +52,7 @@ render function [x] for now
  
 select function [x] for now
 
-track function <- not implementing currently
+track function <- not implementing in current version
 
 move function <- YOU ARE HERE
 
