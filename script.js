@@ -12,9 +12,10 @@ class DISK {
 let gameFinished;
 // variable number of disks
 let stackHeight;
-// selected disk
+// selected disk and tower
 let selectDisk;
 let selectTower;
+// stack arrays to store objects
 let stackOneArr;
 let stackTwoArr;
 let stackThreeArr;
@@ -33,9 +34,9 @@ const stackThree = document.querySelector('.stackThree');
 startGame.addEventListener('click', init);
 // resetGameBtn.addEventListener('click', render);
 towerContainer.addEventListener('click', disk);
-// stackOne.addEventListener('click', move);
-// stackTwo.addEventListener('click', move);
-// stackThree.addEventListener('click', move);
+stackOne.addEventListener('click', tower1);
+stackTwo.addEventListener('click', tower2);
+stackThree.addEventListener('click', tower3);
 
 /*----- functions -----*/
 // init function
@@ -62,19 +63,19 @@ function render(event) {
     // }
 
     // create as many disks as the input value
-    for (let i = 1; i < stackHeight + 1; i++) {
+    for (let i = stackHeight; i > 0; i--) {
         // create new object
-        const disk = new DISK(i, i, i);
+        const disk = new DISK(i, i);
         // create div element
         const placeholderDisk = document.createElement('div');
         // fill inner text of div element for testing purposes
         placeholderDisk.innerText = disk.name;
         // add class to div element
-        placeholderDisk.classList.add('disk');
+        placeholderDisk.classList.add('disk', `${i}`);
         // push disk to stackOneArr
-        stackOneArr.push(disk);
+        stackOneArr.unshift(disk);
         // append the div element to the parent div element
-        stackOne.appendChild(placeholderDisk);
+        stackOne.prepend(placeholderDisk);
     }
 }
 
@@ -97,23 +98,143 @@ function render(event) {
     // });
 // }
 
+//&& stackOneArr[0] == event.target.classList[1]
 function disk(event) {
-    if(event.target.classList.contains('disk')) {
+    if(event.target.classList[1] == stackOneArr[0].num) {
         selectDisk = event.target;
         // console.log(selectDisk);
     }
-    tower(event, selectDisk);
+    // else if(event.target.classList[1] == stackTwoArr[0].num) {
+    //     selectDisk = event.target;
+    // }
+    // else if(event.target.classList[1] == stackThreeArr[0].num) {
+    //     selectDisk = event.target;
+    // }
 }
 
-function tower(event, selectDisk) {
-    if(event.target.classList.contains('towerSection')) {
+function tower1(event) {
+    // conditional to see if user clicked on any tower section
+    if(event.target.classList.contains('stackTwo')) {
         selectTower = event.target;
-        if(event.target.classList.contains('stackTwo')) {
-            stackOneArr.shift();
-            stackTwoArr.unshift(stackOneArr[0]);
-            console.log(stackTwoArr);
-            selectTower.prepend(selectDisk);
-        }
         // console.log(selectTower);
+        if(stackTwoArr[0] == undefined && selectDisk !== undefined) {
+            // check the width of the first element in stack one and compare it to the width of the first element in stack two
+            // if the width is greater then return early
+            stackTwoArr.unshift(stackOneArr[0]);
+            stackOneArr.shift();
+            // console.log(stackOneArr, stackTwoArr);
+            stackTwo.prepend(selectDisk);
+        }
+        else if(selectDisk.classList[1] < stackTwoArr[0].num) {
+            stackTwoArr.unshift(stackOneArr[0]);
+            stackOneArr.shift();
+            stackTwo.prepend(selectDisk);
+        }
+        else {
+            return;
+        }
+    }
+    if(event.target.classList.contains('stackThree')) {
+        selectTower = event.target;
+        // console.log(selectTower);
+        if(stackThreeArr[0] == undefined && selectDisk !== undefined) {
+            // check the width of the first element in stack one and compare it to the width of the first element in stack three
+            // if the width is greater then return early
+            stackThreeArr.unshift(stackOneArr[0]);
+            stackOneArr.shift();
+            // console.log(stackOneArr, stackThreeArr);
+            stackThree.prepend(selectDisk);
+        }
+        else if(selectDisk.classList[1] < stackThreeArr[0].num) {
+            stackThreeArr.unshift(stackOneArr[0]);
+            stackOneArr.shift();
+            stackThree.prepend(selectDisk);
+        }
+        else {
+            return;
+        }
+    }
+}
+
+function tower2(event) {
+    // conditional to see if user clicked on any tower section
+    if(event.target.classList.contains('stackOne')) {
+        selectTower = event.target;
+        // console.log(selectTower);
+        if(stackOneArr[0] == undefined && selectDisk !== undefined) {
+            // check the width of the first element in stack one and compare it to the width of the first element in stack two
+            // if the width is greater then return early
+            stackOneArr.unshift(stackTwoArr[0]);
+            stackTwoArr.shift();
+            // console.log(stackOneArr, stackTwoArr);
+            stackOne.prepend(selectDisk);
+        }
+        else if(selectDisk.classList[1] < stackOneArr[0].num) {
+            stackOneArr.unshift(stackTwoArr[0]);
+            stackTwoArr.shift();
+            stackOne.prepend(selectDisk);
+        }
+        else {
+            return;
+        }
+    }
+    if(event.target.classList.contains('stackThree')) {
+        selectTower = event.target;
+        // console.log(selectTower);
+        if(stackThreeArr[0] == undefined && selectDisk !== undefined) {
+            // check the width of the first element in stack one and compare it to the width of the first element in stack three
+            // if the width is greater then return early
+            stackThreeArr.unshift(stackTwoArr[0]);
+            stackTwoArr.shift();
+            
+            // console.log(stackOneArr, stackThreeArr);
+        }
+        else if(selectDisk.classList[1] < stackThreeArr[0].num) {
+            stackThreeArr.unshift(stackTwoArr[0]);
+            stackTwoArr.shift();
+        }
+        else {
+            return;
+        }
+    }
+}
+
+function tower3(event) {
+    // conditional to see if user clicked on any tower section
+    if(event.target.classList.contains('stackOne')) {
+        selectTower = event.target;
+        // console.log(selectTower);
+        if(stackOneArr[0] == undefined && selectDisk !== undefined) {
+            // check the width of the first element in stack one and compare it to the width of the first element in stack two
+            // if the width is greater then return early
+            stackOneArr.unshift(stackThreeArr[0]);
+            stackThreeArr.shift();
+            // console.log(stackOneArr, stackTwoArr);
+        }
+        else if(selectDisk.classList[1] < stackOneArr[0].num) {
+            stackOneArr.unshift(stackThreeArr[0]);
+            stackThreeArr.shift();
+        }
+        else {
+            return;
+        }
+    }
+    if(event.target.classList.contains('stackTwo')) {
+        selectTower = event.target;
+        // console.log(selectTower);
+        if(stackTwoArr[0] == undefined && selectDisk !== undefined) {
+            // check the width of the first element in stack one and compare it to the width of the first element in stack three
+            // if the width is greater then return early
+            stackTwoArr.unshift(stackThreeArr[0]);
+            stackThreeArr.shift();
+            // console.log(stackOneArr, stackThreeArr);
+        }
+        else if(selectDisk.classList[1] < stackTwoArr[0].num) {
+            stackTwoArr.unshift(stackThreeArr[0]);
+            stackThreeArr.shift();
+        }
+        else {
+            return;
+        }
     }
 }
