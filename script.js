@@ -33,7 +33,6 @@ const stackThree = document.querySelector('.stackThree');
 /*----- event listeners -----*/
 startGame.addEventListener('click', init);
 resetGameBtn.addEventListener('click', reset);
-towerContainer.addEventListener('click', disk);
 towerContainer.addEventListener('click', pickTower);
 
 /*----- functions -----*/
@@ -87,24 +86,21 @@ function reset() {
     render();
 }
 
-function disk(event) {
-    if(event.target.classList.contains('disk')) {
+function pickTower(event) {
+    if(event.target.classList.contains('disk') && event.target === event.target.parentElement.firstChild) {
         selectDisk = event.target;
     }
-    else {
-        return;
-    }
-}
-
-function pickTower(event) {
     if(event.target.classList.contains('stackOne')) {
         tower1();
+        selectDisk = false;
     }
     else if(event.target.classList.contains('stackTwo')) {
         tower2();
+        selectDisk = false;
     }
     else if(event.target.classList.contains('stackThree')) {
         tower3();
+        selectDisk = false;
     }
     else {
         return;
@@ -192,11 +188,13 @@ function tower3() {
             stackThreeArr.unshift(stackOneArr[0]);
             stackOneArr.shift();
             stackThree.prepend(selectDisk);
+            win();
         }
         else if(parseInt(selectDisk.classList[1]) < stackThreeArr[0].num) {
             stackThreeArr.unshift(stackOneArr[0]);
             stackOneArr.shift();
             stackThree.prepend(selectDisk);
+            win();
         }
         else {
             return;
@@ -207,15 +205,26 @@ function tower3() {
             stackThreeArr.unshift(stackTwoArr[0]);
             stackTwoArr.shift();
             stackThree.prepend(selectDisk);
+            win();
         }
         else if(parseInt(selectDisk.classList[1]) < stackThreeArr[0].num) {
             stackThreeArr.unshift(stackTwoArr[0]);
             stackTwoArr.shift();
             stackThree.prepend(selectDisk);
+            win();
         }
         else {
             return;
         }
+    }
+    else {
+        return;
+    }
+}
+
+function win() {
+    if(stackThreeArr.length === stackHeight) {
+        console.log('you win');
     }
     else {
         return;
