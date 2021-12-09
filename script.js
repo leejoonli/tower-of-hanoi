@@ -36,10 +36,18 @@ resetGameBtn.addEventListener('click', reset);
 towerContainer.addEventListener('click', pickTower);
 
 /*----- functions -----*/
-// init function
-    // sets the game to the start with all the disks on the left side and ordered
+// init function sets the game to the start with all the disks on the left side and ordered
 function init() {
     // set win condition to false
+    while(stackOne.firstChild) {
+        stackOne.removeChild(stackOne.firstChild);
+    }
+    while(stackTwo.firstChild) {
+        stackTwo.removeChild(stackTwo.firstChild);
+    }
+    while(stackThree.firstChild) {
+        stackThree.removeChild(stackThree.firstChild);
+    }
     gameFinished = false;
     selectDisk = false;
     stackOneArr = [];
@@ -47,7 +55,7 @@ function init() {
     stackThreeArr = [];
     stackHeight = parseInt(towerHeight.value);
     render();
-    // track();
+    // track(); <- not implemented
 }
 
 // render function
@@ -70,6 +78,7 @@ function render() {
 }
 
 function reset() {
+    // removes all child elements of stackOne div, stackTwo div, and stackThree div
     while(stackOne.firstChild) {
         stackOne.removeChild(stackOne.firstChild);
     }
@@ -79,6 +88,7 @@ function reset() {
     while(stackThree.firstChild) {
         stackThree.removeChild(stackThree.firstChild);
     }
+    // sets all current arrays to empty and current selected disk to false
     selectDisk = false;
     stackOneArr = [];
     stackTwoArr = [];
@@ -87,11 +97,15 @@ function reset() {
 }
 
 function pickTower(event) {
+    // choose disk div element and store it in the app state variable
     if(event.target.classList.contains('disk') && event.target === event.target.parentElement.firstChild) {
         selectDisk = event.target;
     }
+    // choose disk tower div element to move selectDisk to the said disk tower
+    // depending on which tower element is chosen run a specific function
     if(event.target.classList.contains('stackOne')) {
         tower1();
+        // sets the chosen disk back to false just in case.  I don't know if this actually does anything useful
         selectDisk = false;
     }
     else if(event.target.classList.contains('stackTwo')) {
@@ -108,23 +122,31 @@ function pickTower(event) {
 }
 
 function tower1() {
+    // when the function runs set the selected tower div element to its app state variable
     selectTower = event.target;
+    // check to know which stack the select disk div element is coming from
     if(selectDisk.parentElement.classList.contains('stackTwo')) {
+        // check to see if the chosen tower element and its corresponding array has any elements inside
         if(stackOneArr.length === 0 && selectDisk !== undefined) {
+            // if no elements in the array, shift it in and remove it the array that it came from
             stackOneArr.unshift(stackTwoArr[0]);
             stackTwoArr.shift();
+            // update html to reflect the current array
             stackOne.prepend(selectDisk);
         }
+        // check to see if the selected disk div element has a num value less than the num value of the first index of the selected tower array
         else if(parseInt(selectDisk.classList[1]) < stackOneArr[0].num) {
+            // if true, then shift it in and remove it from the array that it came from
             stackOneArr.unshift(stackTwoArr[0]);
             stackTwoArr.shift();
+            // update html to reflect the current array
             stackOne.prepend(selectDisk);
         }
         else {
             return;
         }
     }
-    if(selectDisk.parentElement.classList.contains('stackThree')) {
+    else if(selectDisk.parentElement.classList.contains('stackThree')) {
         if(stackOneArr.length === 0 && selectDisk !== undefined) {
             stackOneArr.unshift(stackThreeArr[0]);
             stackThreeArr.shift();
@@ -200,7 +222,7 @@ function tower3() {
             return;
         }
     }
-    if(selectDisk.parentElement.classList.contains('stackTwo')) {
+    else if(selectDisk.parentElement.classList.contains('stackTwo')) {
         if(stackThreeArr.length === 0 && selectDisk !== undefined) {
             stackThreeArr.unshift(stackTwoArr[0]);
             stackTwoArr.shift();
