@@ -53,11 +53,6 @@ function init() {
 
 // render function
 function render() {
-    selectDisk = false;
-    stackOneArr = [];
-    stackTwoArr = [];
-    stackThreeArr = [];
-    
     // create as many disks as the input value
     for (let i = stackHeight; i > 0; i--) {
         // create new object
@@ -85,6 +80,10 @@ function reset() {
     while(stackThree.firstChild) {
         stackThree.removeChild(stackThree.firstChild);
     }
+    selectDisk = false;
+    stackOneArr = [];
+    stackTwoArr = [];
+    stackThreeArr = [];
     render();
 }
 
