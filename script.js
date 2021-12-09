@@ -1,6 +1,6 @@
 /*----- constants -----*/
 class DISK {
-    constructor(num, name ,width) {
+    constructor(num, name, width) {
         this.num = num;
         this.name = `testing ${name}`;
         this.width = width;
@@ -22,6 +22,10 @@ let stackThreeArr;
 
 /*----- cached element references -----*/
 const aboutGameBtn = document.querySelector('.aboutGame');
+const modalAboutGame = document.querySelector('.modalAboutGame');
+const winGame = document.querySelector('.winGame');
+const winGameCloseBtn = document.querySelector('.winGameClose');
+const closeAboutGameBtn = document.querySelector('.modalClose');
 const startGame = document.querySelector('.initGame');
 const resetGameBtn = document.querySelector('.resetGame');
 const towerHeight = document.querySelector('.towerHeight');
@@ -34,11 +38,14 @@ const stackThree = document.querySelector('.stackThree');
 startGame.addEventListener('click', init);
 resetGameBtn.addEventListener('click', reset);
 towerContainer.addEventListener('click', pickTower);
+aboutGameBtn.addEventListener('click', displayAboutGameModal);
+closeAboutGameBtn.addEventListener('click', closeAboutGameModal);
+winGameCloseBtn.addEventListener('click', closeWinGame);
 
 /*----- functions -----*/
 // init function sets the game to the start with all the disks on the left side and ordered
 function init() {
-    // set win condition to false
+    // https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/ removes all previous child elements if any
     while(stackOne.firstChild) {
         stackOne.removeChild(stackOne.firstChild);
     }
@@ -48,6 +55,7 @@ function init() {
     while(stackThree.firstChild) {
         stackThree.removeChild(stackThree.firstChild);
     }
+    // set win condition to false
     gameFinished = false;
     selectDisk = false;
     stackOneArr = [];
@@ -88,12 +96,26 @@ function reset() {
     while(stackThree.firstChild) {
         stackThree.removeChild(stackThree.firstChild);
     }
-    // sets all current arrays to empty and current selected disk to false
+    // sets all current arrays to empty and current selected disk and win game to false
+    gameFinished = false;
     selectDisk = false;
     stackOneArr = [];
     stackTwoArr = [];
     stackThreeArr = [];
     render();
+}
+
+function clear() {
+    // removes all child elements of stackOne div, stackTwo div, and stackThree div
+    while(stackOne.firstChild) {
+        stackOne.removeChild(stackOne.firstChild);
+    }
+    while(stackTwo.firstChild) {
+        stackTwo.removeChild(stackTwo.firstChild);
+    }
+    while(stackThree.firstChild) {
+        stackThree.removeChild(stackThree.firstChild);
+    }
 }
 
 function pickTower(event) {
@@ -246,10 +268,26 @@ function tower3() {
 
 function win() {
     if(stackThreeArr.length === stackHeight) {
-        console.log('you win');
+        gameFinished = true;
+        winGame.style.display = 'block';
     }
     else {
         return;
+    }
+}
+
+function displayAboutGameModal() {
+    modalAboutGame.style.display = 'block';
+}
+
+function closeAboutGameModal() {
+    modalAboutGame.style.display = 'none';
+}
+
+function closeWinGame() {
+    winGame.style.display = 'none';
+    if(gameFinished === true) {
+        clear();
     }
 }
 
