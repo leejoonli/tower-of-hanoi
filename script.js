@@ -32,15 +32,14 @@ const stackThree = document.querySelector('.stackThree');
 
 /*----- event listeners -----*/
 startGame.addEventListener('click', init);
-// resetGameBtn.addEventListener('click', render);
+resetGameBtn.addEventListener('click', reset);
 towerContainer.addEventListener('click', disk);
 towerContainer.addEventListener('click', pickTower);
 
 /*----- functions -----*/
 // init function
     // sets the game to the start with all the disks on the left side and ordered
-function init(event) {
-    // event.preventDefault();
+function init() {
     // set win condition to false
     gameFinished = false;
     selectDisk = false;
@@ -53,14 +52,12 @@ function init(event) {
 }
 
 // render function
-function render(event) {
-    // event.preventDefault();
-
-    // clear current tower
-    // while(stackOne.contains(div)) {
-    //     stackOne.removeChild();
-    // }
-
+function render() {
+    selectDisk = false;
+    stackOneArr = [];
+    stackTwoArr = [];
+    stackThreeArr = [];
+    
     // create as many disks as the input value
     for (let i = stackHeight; i > 0; i--) {
         // create new object
@@ -78,24 +75,18 @@ function render(event) {
     }
 }
 
-// https://stackoverflow.com/questions/24050738/javascript-how-to-dynamically-move-div-by-clicking-and-dragging
-// function track(event) {
-    // towerContainer.addEventListener('mousedown', function() {
-    //     moved = false;
-    //     // console.log('down', moved);
-    // });
-    // towerContainer.addEventListener('mousemove', function() {
-    //     moved = true;
-    //     // console.log('hold', moved);
-    // });
-    // towerContainer.addEventListener('mouseup', function(event) {
-    //     if(moved === true) {
-    //         // console.log('down and hold');
-    //     }
-    //     console.log(event);
-    //     move(event);
-    // });
-// }
+function reset() {
+    while(stackOne.firstChild) {
+        stackOne.removeChild(stackOne.firstChild);
+    }
+    while(stackTwo.firstChild) {
+        stackTwo.removeChild(stackTwo.firstChild);
+    }
+    while(stackThree.firstChild) {
+        stackThree.removeChild(stackThree.firstChild);
+    }
+    render();
+}
 
 function disk(event) {
     if(event.target.classList.contains('disk')) {
@@ -122,12 +113,9 @@ function pickTower(event) {
 }
 
 function tower1() {
-    // conditional to see if user clicked on any tower section
     selectTower = event.target;
     if(selectDisk.parentElement.classList.contains('stackTwo')) {
         if(stackOneArr.length === 0 && selectDisk !== undefined) {
-            // check the width of the first element in stack one and compare it to the width of the first element in stack two
-            // if the width is greater then return early
             stackOneArr.unshift(stackTwoArr[0]);
             stackTwoArr.shift();
             stackOne.prepend(selectDisk);
@@ -143,8 +131,6 @@ function tower1() {
     }
     if(selectDisk.parentElement.classList.contains('stackThree')) {
         if(stackOneArr.length === 0 && selectDisk !== undefined) {
-            // check the width of the first element in stack one and compare it to the width of the first element in stack three
-            // if the width is greater then return early
             stackOneArr.unshift(stackThreeArr[0]);
             stackThreeArr.shift();
             stackOne.prepend(selectDisk);
@@ -164,12 +150,9 @@ function tower1() {
 }
 
 function tower2() {
-    // conditional to see if user clicked on any tower section
     selectTower = event.target;
     if(selectDisk.parentElement.classList.contains('stackOne')) {
         if(stackTwoArr.length === 0 && selectDisk !== undefined) {
-            // check the width of the first element in stack one and compare it to the width of the first element in stack two
-            // if the width is greater then return early
             stackTwoArr.unshift(stackOneArr[0]);
             stackOneArr.shift();
             stackTwo.prepend(selectDisk);
@@ -185,8 +168,6 @@ function tower2() {
     }
     else if(selectDisk.parentElement.classList.contains('stackThree')) {
         if(stackTwoArr.length === 0 && selectDisk !== undefined) {
-            // check the width of the first element in stack one and compare it to the width of the first element in stack three
-            // if the width is greater then return early
             stackTwoArr.unshift(stackThreeArr[0]);
             stackThreeArr.shift();
             stackTwo.prepend(selectDisk);
@@ -207,11 +188,8 @@ function tower2() {
 
 function tower3() {
     selectTower = event.target;
-    // conditional to see if user clicked on any tower section
     if(selectDisk.parentElement.classList.contains('stackOne')) {
         if(stackThreeArr.length === 0 && selectDisk !== undefined) {
-            // check the width of the first element in stack one and compare it to the width of the first element in stack two
-            // if the width is greater then return early
             stackThreeArr.unshift(stackOneArr[0]);
             stackOneArr.shift();
             stackThree.prepend(selectDisk);
@@ -227,8 +205,6 @@ function tower3() {
     }
     if(selectDisk.parentElement.classList.contains('stackTwo')) {
         if(stackThreeArr.length === 0 && selectDisk !== undefined) {
-            // check the width of the first element in stack one and compare it to the width of the first element in stack three
-            // if the width is greater then return early
             stackThreeArr.unshift(stackTwoArr[0]);
             stackTwoArr.shift();
             stackThree.prepend(selectDisk);
@@ -246,3 +222,22 @@ function tower3() {
         return;
     }
 }
+
+// https://stackoverflow.com/questions/24050738/javascript-how-to-dynamically-move-div-by-clicking-and-dragging
+// function track(event) {
+    // towerContainer.addEventListener('mousedown', function() {
+    //     moved = false;
+    //     // console.log('down', moved);
+    // });
+    // towerContainer.addEventListener('mousemove', function() {
+    //     moved = true;
+    //     // console.log('hold', moved);
+    // });
+    // towerContainer.addEventListener('mouseup', function(event) {
+    //     if(moved === true) {
+    //         // console.log('down and hold');
+    //     }
+    //     console.log(event);
+    //     move(event);
+    // });
+// }
