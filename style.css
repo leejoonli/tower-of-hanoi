@@ -1,4 +1,17 @@
-* {
+/* https://meyerweb.com/eric/tools/css/reset/ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -7,29 +20,81 @@
 	vertical-align: baseline;
 }
 
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
 body {
+    background-color: lightcoral;
+	line-height: 1;
     font-size: 2rem;
+    position: relative;
+    box-sizing: border-box;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
 h1 {
     border: 1px solid red;
+    text-align: center;
+    font-size: 60px;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
 }
 
 .gameContainer {
     display: flex;
+    /* position: relative; */
     margin: auto;
-    max-width: 67%;
+    max-width: 60%;
     padding: 0;
 }
 
 .towerSection {
-    margin: auto;
+    background-color: blanchedalmond;
+    margin: 0 auto;
     border: 1px solid red;
+    /* border-left: 5px solid red;
+    float: right; */
     padding: 0;
-    height: 40vh;
-    flex-basis: 33%;
+    height: 35vh;
+    flex-basis: 20%;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.towerPlatform {
+    background-color: aquamarine;
+    border: 1px solid red;
+    height: 40px;
+    max-width: 60%;
+    margin: 0 auto;
 }
 
 .towerHeight {
@@ -37,16 +102,22 @@ h1 {
     font-size: 20px;
 }
 
-.aboutGame, .resetGame, .initGame {
+.aboutGame, .resetGame, .initGame, .modalClose, .winGameClose {
     border: 1px solid red;
+    border-radius: 7px;
     font-size: 20px;
+}
+
+.listItem {
+    padding: 2.5px;
 }
 
 .disk {
     font-size: 25px;
-    padding-left: 25px;
-    padding-right: 25px;
     border: 1px solid red;
+    text-align: center;
+    border-radius: 7px;
+    padding: 2px;
 }
 
 .modalAboutGame, .winGame {
@@ -64,18 +135,28 @@ h1 {
 
 .modalTextbox, .winGameTextbox {
     background-color: white;
-    height: 250px;
-    width: 250px;
-    border-radius: 1px solid red;
+    height: 200px;
+    width: 500px;
+    border: 1px solid red;
+    border-radius: 7px;
     margin: 150px auto;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    padding: 10px;
 }
+
+/* .rules {
+    padding: 10px;
+} */
 
 .modalClose, .winGameClose {
     border: 1px solid red;
 }
 
-.rules {
-    /* https://stackoverflow.com/questions/19364836/how-to-center-ordered-list-number-in-html */
-    list-style-position: inside;
+@media (max-width: 900px) {
+    body {
+        background-color: lemonchiffon;
+    }
+    .gameContainer, .towerPlatform {
+        max-width: 100%;
+    }
 }
