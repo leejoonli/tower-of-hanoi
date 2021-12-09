@@ -111,6 +111,7 @@ function disk(event) {
         }
         else if(event.target.classList[1] == stackThreeArr[0].num) {
             selectDisk = event.target;
+            console.log(selectDisk);
         }
     }
     else {
@@ -192,7 +193,7 @@ function tower2() {
             // console.log(stackOneArr, stackTwoArr);
             stackTwo.prepend(selectDisk);
         }
-        else if(parseInt(selectDisk.classList[0]) < stackTwoArr[0].num) {
+        else if(parseInt(selectDisk.classList[1]) < stackTwoArr[0].num) {
             stackTwoArr.unshift(stackOneArr[0]);
             stackOneArr.shift();
             stackTwo.prepend(selectDisk);
@@ -210,7 +211,7 @@ function tower2() {
             // console.log(stackThreeArr, stackTwoArr);
             stackTwo.prepend(selectDisk);
         }
-        else if(parseInt(selectDisk.classList[0]) < stackTwoArr[0].num) {
+        else if(parseInt(selectDisk.classList[1]) < stackTwoArr[0].num) {
             stackTwoArr.unshift(stackThreeArr[0]);
             stackThreeArr.shift();
             stackTwo.prepend(selectDisk);
