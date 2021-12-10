@@ -19,10 +19,13 @@ let selectTower;
 let stackOneArr;
 let stackTwoArr;
 let stackThreeArr;
+// move counter
+let count;
 
 /*----- cached element references -----*/
 const aboutGameBtn = document.querySelector('.aboutGame');
 const modalAboutGame = document.querySelector('.modalAboutGame');
+const moveCount = document.querySelector('.counter');
 const winGame = document.querySelector('.winGame');
 const winGameCloseBtn = document.querySelector('.winGameClose');
 const closeAboutGameBtn = document.querySelector('.modalClose');
@@ -61,6 +64,7 @@ function init() {
     stackOneArr = [];
     stackTwoArr = [];
     stackThreeArr = [];
+    count = 0;
     stackHeight = parseInt(towerHeight.value);
     render();
     // track(); <- not implemented
@@ -102,6 +106,7 @@ function reset() {
     stackOneArr = [];
     stackTwoArr = [];
     stackThreeArr = [];
+    count = 0;
     render();
 }
 
@@ -116,6 +121,7 @@ function clear() {
     while(stackThree.firstChild) {
         stackThree.removeChild(stackThree.firstChild);
     }
+    count = 0;
 }
 
 function pickTower(event) {
@@ -153,6 +159,8 @@ function tower1() {
             // if no elements in the array, shift it in and remove it the array that it came from
             stackOneArr.unshift(stackTwoArr[0]);
             stackTwoArr.shift();
+            // increment count
+            count++;
             // update html to reflect the current array
             stackOne.prepend(selectDisk);
         }
@@ -161,6 +169,7 @@ function tower1() {
             // if true, then shift it in and remove it from the array that it came from
             stackOneArr.unshift(stackTwoArr[0]);
             stackTwoArr.shift();
+            count++;
             // update html to reflect the current array
             stackOne.prepend(selectDisk);
         }
@@ -172,11 +181,13 @@ function tower1() {
         if(stackOneArr.length === 0 && selectDisk !== undefined) {
             stackOneArr.unshift(stackThreeArr[0]);
             stackThreeArr.shift();
+            count++;
             stackOne.prepend(selectDisk);
         }
         else if(parseInt(selectDisk.classList[1]) < stackOneArr[0].num) {
             stackOneArr.unshift(stackThreeArr[0]);
             stackThreeArr.shift();
+            count++;
             stackOne.prepend(selectDisk);
         }
         else {
@@ -194,11 +205,13 @@ function tower2() {
         if(stackTwoArr.length === 0 && selectDisk !== undefined) {
             stackTwoArr.unshift(stackOneArr[0]);
             stackOneArr.shift();
+            count++;
             stackTwo.prepend(selectDisk);
         }
         else if(parseInt(selectDisk.classList[1]) < stackTwoArr[0].num) {
             stackTwoArr.unshift(stackOneArr[0]);
             stackOneArr.shift();
+            count++;
             stackTwo.prepend(selectDisk);
         }
         else {
@@ -209,11 +222,13 @@ function tower2() {
         if(stackTwoArr.length === 0 && selectDisk !== undefined) {
             stackTwoArr.unshift(stackThreeArr[0]);
             stackThreeArr.shift();
+            count++;
             stackTwo.prepend(selectDisk);
         }
         else if(parseInt(selectDisk.classList[1]) < stackTwoArr[0].num) {
             stackTwoArr.unshift(stackThreeArr[0]);
             stackThreeArr.shift();
+            count++;
             stackTwo.prepend(selectDisk);
         }
         else {
@@ -231,12 +246,14 @@ function tower3() {
         if(stackThreeArr.length === 0 && selectDisk !== undefined) {
             stackThreeArr.unshift(stackOneArr[0]);
             stackOneArr.shift();
+            count++;
             stackThree.prepend(selectDisk);
             win();
         }
         else if(parseInt(selectDisk.classList[1]) < stackThreeArr[0].num) {
             stackThreeArr.unshift(stackOneArr[0]);
             stackOneArr.shift();
+            count++;
             stackThree.prepend(selectDisk);
             win();
         }
@@ -248,12 +265,14 @@ function tower3() {
         if(stackThreeArr.length === 0 && selectDisk !== undefined) {
             stackThreeArr.unshift(stackTwoArr[0]);
             stackTwoArr.shift();
+            count++;
             stackThree.prepend(selectDisk);
             win();
         }
         else if(parseInt(selectDisk.classList[1]) < stackThreeArr[0].num) {
             stackThreeArr.unshift(stackTwoArr[0]);
             stackTwoArr.shift();
+            count++;
             stackThree.prepend(selectDisk);
             win();
         }
@@ -269,6 +288,7 @@ function tower3() {
 function win() {
     if(stackThreeArr.length === stackHeight) {
         gameFinished = true;
+        moveCount.innerText = `It took you ${count} moves`;
         winGame.style.display = 'block';
     }
     else {
