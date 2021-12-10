@@ -13,20 +13,24 @@
 <body>
     <h1>Tower of Hanoi</h1>
     <div class="nav">
-        <button class="aboutGame">About Game</button>
-        <input class="towerHeight" type="number" placeholder="3" min="3" max="8">
-        <button class="initGame">Go</button>
-        <button class="resetGame">Reset</button>
+        <div class="aboutResetContainer">
+            <button class="aboutGame">About Game</button>
+            <button class="resetGame">Reset</button>
+        </div>
+        <div class="heightGoCntainer">
+            <input class="towerHeight" type="number" value="3" min="3" max="8">
+            <button class="initGame">Go</button>
+        </div>
     </div>
     <div class="gameContainer">
         <div class="stackOne towerSection">
-
+            <div class="testingsomething"></div>
         </div>
         <div class="stackTwo towerSection">
-            
+            <div class="testingsomething"></div>
         </div>
         <div class="stackThree towerSection">
-            
+            <div class="testingsomething"></div>
         </div>
     </div>
     <div class="towerPlatform"></div>
@@ -35,7 +39,10 @@
     </canvas> -->
     <div class="modalAboutGame">
         <div class="modalTextbox">
-            <h2 class="rulesHeader">Tower of Hanoi rules</h2>
+            <div class="aboutGameHeader">
+                <h2 class="rulesHeader">Tower of Hanoi rules</h2>
+                <button class="modalClose">Close</button>
+            </div>
             <ol class="rules">
                 <li class="listItem">
                     Click on a disk to select it.
@@ -53,15 +60,16 @@
                     No disk may be placed on top of a disk that is smaller than it.
                 </li>
             </ol>
-            <div class="modalFooter">
+            <!-- <div class="modalFooter">
                 <button class="modalClose">Close</button>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="winGame">
         <div class="winGameTextbox">
             <h2 class="winHeader">You Win</h2>
             <h3 class="counter"></h3>
+            <p class="winCompare"></p>
             <div class="winGameFooter">
                 <button class="winGameClose">Play Again</button>
             </div>

@@ -6,9 +6,9 @@ disk div containers
 tower div containers -> array
 
 /*-----------------------------------*/
-    stackOne arr
-    stackTwo arr
-    stackThree arr
+stackOne arr
+stackTwo arr
+stackThree arr
 /*-----------------------------------*/
 
 /*----- cached element references -----*/
@@ -30,7 +30,7 @@ about game button
     modal to display rules of game
 disk div element
     select which div element
-    select where to put it and change the array to match <- YOU ARE HERE
+    select where to put it and change the array to match
         check to see if valid move
             move disk div element to tower div element
             check win condition
@@ -42,18 +42,18 @@ make objects instead of dom elements to store data
 make div disk elements
 set innerText of div disk elements to objects key/property
 push it to the stackOne array
-    when div disk element moves change the arrays to match the html <- YOU ARE HERE
+    when div disk element moves change the arrays to match the html
 
 /*----- functions -----*/
 
-init function [x] for now
+init function [x]
 
-render function [x] for now
+render function [x]
  
-select function [x] for now
+select function [x]
 
 track function <- not implementing in current version
 
-move function <- YOU ARE HERE
+move function [x]
 
-win function
+win function [x]

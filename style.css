@@ -26,13 +26,16 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #40B5AD;
 	line-height: 1;
     font-family: 'Cinzel', serif;
     font-size: 2rem;
     position: relative;
-    box-sizing: border-box;
 }
 
 ol, ul {
@@ -62,32 +65,46 @@ h1 {
 
 .nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 .gameContainer {
     display: flex;
-    /* position: relative; */
-    margin: auto;
+    margin: 0 auto;
     max-width: 60%;
-    padding: 0;
+    padding: 0px;
 }
 
 .towerSection {
     background-color: #F5DEB3;
-    margin: 0 auto;
+    margin: 0;
     border: 1px solid red;
     /* border-left: 5px solid red;
     float: right; */
-    padding: 0;
+    padding: 0px;
     height: 35vh;
-    flex-basis: 20%;
+    flex-basis: 30%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     flex-grow: 1;
     flex-shrink: 1;
     align-items: center;
+}
+
+.stackOne, .stackTwo, .stackThree {
+    position: relative;
+}
+
+.testingsomething {
+    background-color: #6E260E;
+    position: absolute;
+    height: 85%;
+    width: 15%;
 }
 
 .towerPlatform {
@@ -101,8 +118,10 @@ h1 {
 
 .towerHeight {
     background-color: #F0E68C;
-    width: 30px;
+    width: 35px;
     border: 1px solid red;
+    border-radius: 5px;
+    padding: 3px;
     font-size: 20px;
 }
 
@@ -117,7 +136,7 @@ h1 {
 }
 
 .listItem {
-    padding: 2.5px;
+    padding-top: 15px;
 }
 
 .disk {
@@ -145,7 +164,7 @@ h1 {
 
 .modalTextbox, .winGameTextbox {
     background-color: #E1C16E;
-    height: 200px;
+    height: 230px;
     width: 600px;
     border: 1px solid red;
     border-radius: 7px;
@@ -154,7 +173,7 @@ h1 {
     padding: 10px;
 }
 
-.rulesHeader, .modalFooter {
+.rulesHeader {
     font-size: 25px;
     font-weight: 600;
     padding-top: 5px;
@@ -164,26 +183,46 @@ h1 {
 .rules {
     list-style: decimal;
     list-style-position: inside;
-    padding: 0px;
-}
-
-.modalClose, .winGameClose {
-    border: 1px solid red;
 }
 
 .winHeader {
     font-size: 50px;
     font-weight: 700;
     text-align: center;
+    margin: 2px;
+}
+
+.winCompare {
+    font-size: 18px;
+    text-align: center;
+    margin: 2px;
+}
+
+.counter {
+    font-size: 35px;
+    text-align: center;
+    margin: 2px;
 }
 
 .winGameClose {
     align-items: center;
 }
 
-.counter {
-    font-size: 35px;
-    text-align: center;
+.aboutGameHeader {
+    display: flex;
+}
+
+.modalClose {
+    margin-left: 200px;
+    padding-top: 0;
+}
+
+.winGameFooter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid green;
+    height: 50%;
 }
 
 @media (max-width: 900px) {

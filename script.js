@@ -28,6 +28,7 @@ const aboutGameBtn = document.querySelector('.aboutGame');
 const modalAboutGame = document.querySelector('.modalAboutGame');
 const moveCount = document.querySelector('.counter');
 const winGame = document.querySelector('.winGame');
+const countCompare = document.querySelector('.winCompare');
 const winGameCloseBtn = document.querySelector('.winGameClose');
 const closeAboutGameBtn = document.querySelector('.modalClose');
 const startGame = document.querySelector('.initGame');
@@ -51,12 +52,24 @@ winGameCloseBtn.addEventListener('click', closeWinGame);
 function init() {
     // https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/ removes all previous child elements if any
     while(stackOne.firstChild) {
+        // if(stackOne.firstChild.classList.contains('disk')) {
+        //     stackOne.removeChild(stackOne.firstChild);
+        // }
+        // else {
+        //     break;
+        // }
         stackOne.removeChild(stackOne.firstChild);
     }
     while(stackTwo.firstChild) {
+        // if(stackOne.firstChild.classList.contains('testingsomething')) {
+        //     break;
+        // }
         stackTwo.removeChild(stackTwo.firstChild);
     }
     while(stackThree.firstChild) {
+        // if(stackOne.firstChild.classList.contains('testingsomething')) {
+        //     break;
+        // }
         stackThree.removeChild(stackThree.firstChild);
     }
     // set win condition to false
@@ -330,6 +343,7 @@ function win() {
     if(stackThreeArr.length === stackHeight) {
         gameFinished = true;
         moveCount.innerText = `It took you ${count} moves`;
+        countCompare.innerText = `The minimum amount of moves for this level is ${2 ** stackHeight - 1} moves`;
         winGame.style.display = 'block';
     }
     else {
