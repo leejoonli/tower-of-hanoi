@@ -27,8 +27,9 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
-    background-color: lightcoral;
+    background-color: #40B5AD;
 	line-height: 1;
+    font-family: 'Cinzel', serif;
     font-size: 2rem;
     position: relative;
     box-sizing: border-box;
@@ -62,7 +63,6 @@ h1 {
 .nav {
     display: flex;
     justify-content: center;
-    margin: 10px;
 }
 
 .gameContainer {
@@ -74,7 +74,7 @@ h1 {
 }
 
 .towerSection {
-    background-color: blanchedalmond;
+    background-color: #F5DEB3;
     margin: 0 auto;
     border: 1px solid red;
     /* border-left: 5px solid red;
@@ -87,25 +87,33 @@ h1 {
     justify-content: flex-end;
     flex-grow: 1;
     flex-shrink: 1;
+    align-items: center;
 }
 
 .towerPlatform {
-    background-color: aquamarine;
+    background-color: #6E260E;
     border: 1px solid red;
+    border-radius: 5px;
     height: 40px;
     max-width: 60%;
     margin: 0 auto;
 }
 
 .towerHeight {
+    background-color: #F0E68C;
+    width: 30px;
     border: 1px solid red;
     font-size: 20px;
 }
 
 .aboutGame, .resetGame, .initGame, .modalClose, .winGameClose {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    background-color: #F0E68C;
     border: 1px solid red;
     border-radius: 7px;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .listItem {
@@ -118,6 +126,8 @@ h1 {
     text-align: center;
     border-radius: 7px;
     padding: 2px;
+    width: 70%;
+    cursor: pointer;
 }
 
 .modalAboutGame, .winGame {
@@ -134,9 +144,9 @@ h1 {
 }
 
 .modalTextbox, .winGameTextbox {
-    background-color: white;
+    background-color: #E1C16E;
     height: 200px;
-    width: 500px;
+    width: 600px;
     border: 1px solid red;
     border-radius: 7px;
     margin: 150px auto;
@@ -144,18 +154,39 @@ h1 {
     padding: 10px;
 }
 
-/* .rules {
-    padding: 10px;
-} */
+.rulesHeader, .modalFooter {
+    font-size: 25px;
+    font-weight: 600;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.rules {
+    list-style: decimal;
+    list-style-position: inside;
+    padding: 0px;
+}
 
 .modalClose, .winGameClose {
     border: 1px solid red;
 }
 
+.winHeader {
+    font-size: 50px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.winGameClose {
+    align-items: center;
+}
+
+.counter {
+    font-size: 35px;
+    text-align: center;
+}
+
 @media (max-width: 900px) {
-    body {
-        background-color: lemonchiffon;
-    }
     .gameContainer, .towerPlatform {
         max-width: 100%;
     }

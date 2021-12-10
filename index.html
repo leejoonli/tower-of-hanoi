@@ -5,15 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;800&family=EB+Garamond:ital@0;1&family=Roboto:wght@100;300;400;700;900&display=swap');
+    </style>
     <title>Document</title>
 </head>
 <body>
     <h1>Tower of Hanoi</h1>
     <div class="nav">
         <button class="aboutGame">About Game</button>
-        <button class="resetGame">Reset</button>
-        <input class="towerHeight" type="text" placeholder="Tower Height">
+        <input class="towerHeight" type="number" placeholder="3" min="3" max="8">
         <button class="initGame">Go</button>
+        <button class="resetGame">Reset</button>
     </div>
     <div class="gameContainer">
         <div class="stackOne towerSection">
@@ -35,26 +38,32 @@
             <h2 class="rulesHeader">Tower of Hanoi rules</h2>
             <ol class="rules">
                 <li class="listItem">
-                    1. Only one disk may be moved at a time.
+                    Click on a disk to select it.
                 </li>
                 <li class="listItem">
-                    2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty space.
+                    Click on the tower space to move your selected disk.
                 </li>
                 <li class="listItem">
-                    3. No disk may be placed on top of a disk that is smaller than it.
+                    Only one disk may be moved at a time.
+                </li>
+                <li class="listItem">
+                    Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty space.
+                </li>
+                <li class="listItem">
+                    No disk may be placed on top of a disk that is smaller than it.
                 </li>
             </ol>
             <div class="modalFooter">
-                <button class="modalClose" href="#">Close</button>
+                <button class="modalClose">Close</button>
             </div>
         </div>
     </div>
     <div class="winGame">
         <div class="winGameTextbox">
-            <h2>You Win</h2>
-            <h3 class="counter">hello world</h3>
+            <h2 class="winHeader">You Win</h2>
+            <h3 class="counter"></h3>
             <div class="winGameFooter">
-                <button class="winGameClose" href="#">Play Again</button>
+                <button class="winGameClose">Play Again</button>
             </div>
         </div>
     </div>

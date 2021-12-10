@@ -2,7 +2,7 @@
 class DISK {
     constructor(num, name, width) {
         this.num = num;
-        this.name = `testing ${name}`;
+        this.name = name;
         this.width = width;
     }
 }
@@ -65,7 +65,12 @@ function init() {
     stackTwoArr = [];
     stackThreeArr = [];
     count = 0;
-    stackHeight = parseInt(towerHeight.value);
+    if(towerHeight.value >= 3 && towerHeight.value <= 8) {
+        stackHeight = parseInt(towerHeight.value);
+    }
+    else {
+        return;
+    }
     render();
     // track(); <- not implemented
 }
@@ -75,11 +80,13 @@ function render() {
     // create as many disks as the input value
     for (let i = stackHeight; i > 0; i--) {
         // create new object
-        const disk = new DISK(i, i);
+        const disk = new DISK(i, i, `${((i * 5)/2) + 78}%`);
         // create div element
         const placeholderDisk = document.createElement('div');
         // fill inner text of div element for testing purposes
         placeholderDisk.innerText = disk.name;
+        // add css styling
+        placeholderDisk.style.width = disk.width;
         // add class to div element
         placeholderDisk.classList.add('disk', `${i}`);
         // push disk to stackOneArr
