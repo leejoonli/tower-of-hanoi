@@ -60,13 +60,14 @@ function init() {
     while(stackThree.firstChild) {
         stackThree.removeChild(stackThree.firstChild);
     }
-    // set win condition to false
+    // set win condition and variables to false, empty all arrays, and set player move count to zero
     gameFinished = false;
     selectDisk = false;
     stackOneArr = [];
     stackTwoArr = [];
     stackThreeArr = [];
     count = 0;
+    // check to see if user has correct input value
     if(inputHeight.value >= 3 && inputHeight.value <= 8) {
         stackHeight = parseInt(inputHeight.value);
     }
@@ -82,23 +83,24 @@ function render() {
     for (let i = stackHeight; i > 0; i--) {
         // create new object
         const disk = new DISK(i, i, diskColor(i), `${((i * 5)/2) + 78}%`);
-        // create div element
+        // create div element to represent the object
         const placeholderDisk = document.createElement('div');
-        // fill inner text of div element for testing purposes
+        // fill inner text of div element to represent which disk it is
         placeholderDisk.innerText = disk.name;
         // add css styling to change the width of the disks
         placeholderDisk.style.width = disk.width;
-        // add css styleing to change the color of the disks
+        // add css styling to change the color of the disks
         placeholderDisk.style.backgroundColor = disk.color;
-        // add class to div element
+        // add classes to div element
         placeholderDisk.classList.add('disk', `${i}`);
-        // push disk to stackOneArr
+        // add disk object to stackOneArr
         stackOneArr.unshift(disk);
-        // append the div element to the parent div element
+        // append the disk div element to the parent stack div element
         stackOne.prepend(placeholderDisk);
     }
 }
 
+// function to set the color of the disk div element depending on input value
 function diskColor(i) {
     let color = '';
     switch(i) {
@@ -141,7 +143,7 @@ function reset() {
     while(stackThree.firstChild) {
         stackThree.removeChild(stackThree.firstChild);
     }
-    // sets all current arrays to empty and current selected disk and win game to false
+    // sets all current arrays to empty, current selected disk and win game to false, and resets the player move count
     gameFinished = false;
     selectDisk = false;
     stackOneArr = [];
@@ -151,8 +153,8 @@ function reset() {
     render();
 }
 
+// clear function to reset everything after the user has won
 function clear() {
-    // removes all child elements of stackOne div, stackTwo div, and stackThree div
     while(stackOne.firstChild) {
         stackOne.removeChild(stackOne.firstChild);
     }
@@ -162,6 +164,11 @@ function clear() {
     while(stackThree.firstChild) {
         stackThree.removeChild(stackThree.firstChild);
     }
+    gameFinished = false;
+    selectDisk = false;
+    stackOneArr = [];
+    stackTwoArr = [];
+    stackThreeArr = [];
     count = 0;
 }
 
@@ -171,7 +178,7 @@ function pickStack(event) {
         selectDisk = event.target;
     }
     // choose disk stack div element to move selectDisk to the said disk stack
-    // depending on which stack element is chosen run a specific function
+    // depending on which stack element is chosen run its corresponding function
     if(event.target.classList.contains('stackOne')) {
         stack1(event);
         // sets the chosen disk back to false just in case.  I don't know if this actually does anything useful
@@ -327,6 +334,7 @@ function stack3() {
 }
 
 function win() {
+    // if the stack three array length is equal to the input height value, win condition === true
     if(stackThreeArr.length === stackHeight) {
         gameFinished = true;
         moveCount.innerText = `It took you ${count} moves`;
