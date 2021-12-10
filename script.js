@@ -1,8 +1,9 @@
 /*----- constants -----*/
 class DISK {
-    constructor(num, name, width) {
+    constructor(num, name, color, width) {
         this.num = num;
         this.name = name;
+        this.color = color;
         this.width = width;
     }
 }
@@ -80,13 +81,15 @@ function render() {
     // create as many disks as the input value
     for (let i = stackHeight; i > 0; i--) {
         // create new object
-        const disk = new DISK(i, i, `${((i * 5)/2) + 78}%`);
+        const disk = new DISK(i, i, diskColor(i), `${((i * 5)/2) + 78}%`);
         // create div element
         const placeholderDisk = document.createElement('div');
         // fill inner text of div element for testing purposes
         placeholderDisk.innerText = disk.name;
-        // add css styling
+        // add css styling to change the width of the disks
         placeholderDisk.style.width = disk.width;
+        // add css styleing to change the color of the disks
+        placeholderDisk.style.backgroundColor = disk.color;
         // add class to div element
         placeholderDisk.classList.add('disk', `${i}`);
         // push disk to stackOneArr
@@ -94,6 +97,37 @@ function render() {
         // append the div element to the parent div element
         stackOne.prepend(placeholderDisk);
     }
+}
+
+function diskColor(i) {
+    let color = '';
+    switch(i) {
+        case 8:
+            color = '#93E9BE';
+            break;
+        case 7:
+            color = '#28FEF3';
+            break;
+        case 6:
+            color = '#DE8DF3';
+            break;
+        case 5:
+            color = '#FE5A4C';
+            break;
+        case 4:
+            color = '#FF7216';
+            break;
+        case 3:
+            color = '#F7F700';
+            break;
+        case 2:
+            color = '#FF4DC3';
+            break;
+        case 1:
+            color = '#FFC0C9';
+            break;
+    }
+    return color;
 }
 
 function reset() {
