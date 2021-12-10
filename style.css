@@ -105,6 +105,7 @@ h1 {
     position: absolute;
     height: 85%;
     width: 15%;
+    border-radius: 5px 5px 0px 0px;
 }
 
 .towerPlatform {

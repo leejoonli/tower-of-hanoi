@@ -50,8 +50,8 @@ winGameCloseBtn.addEventListener('click', closeWinGame);
 /*----- functions -----*/
 // init function sets the game to the start with all the disks on the left side and ordered
 function init() {
-    // https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/ removes all previous child elements if any
-    while(stackOne.firstChild) {
+    // https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/ removes all child elements if any
+    while(stackOne.firstChild && stackOne.firstChild.classList[0] !== 'testingsomething') {
         // if(stackOne.firstChild.classList.contains('disk')) {
         //     stackOne.removeChild(stackOne.firstChild);
         // }
