@@ -86,7 +86,6 @@ function init() {
         return;
     }
     render();
-    // track(); <- not implemented
 }
 
 // render function
@@ -365,22 +364,3 @@ function closeWinGame() {
         clear();
     }
 }
-
-// https://stackoverflow.com/questions/24050738/javascript-how-to-dynamically-move-div-by-clicking-and-dragging
-// function track(event) {
-    // towerContainer.addEventListener('mousedown', function() {
-    //     moved = false;
-    //     // console.log('down', moved);
-    // });
-    // towerContainer.addEventListener('mousemove', function() {
-    //     moved = true;
-    //     // console.log('hold', moved);
-    // });
-    // towerContainer.addEventListener('mouseup', function(event) {
-    //     if(moved === true) {
-    //         // console.log('down and hold');
-    //     }
-    //     console.log(event);
-    //     move(event);
-    // });
-// }
