@@ -58,18 +58,34 @@ table {
 }
 
 h1 {
-    border: 1px solid red;
     text-align: center;
     font-size: 60px;
 }
 
-.nav {
+.btnBar {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 20%;
     margin-right: 20%;
+}
+
+.inputHeight {
+    background-color: #F0E68C;
+    width: 35px;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 20px;
+}
+
+.aboutGame, .resetGame, .initGame, .aboutGameClose, .winGameClose {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    background-color: #F0E68C;
+    border-radius: 7px;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .gameContainer {
@@ -82,9 +98,6 @@ h1 {
 .towerSection {
     background-color: #F5DEB3;
     margin: 0;
-    border: 1px solid red;
-    /* border-left: 5px solid red;
-    float: right; */
     padding: 0px;
     height: 35vh;
     flex-basis: 30%;
@@ -96,53 +109,22 @@ h1 {
     align-items: center;
 }
 
-.stackOne, .stackTwo, .stackThree {
-    position: relative;
-}
-
-.testingsomething {
-    background-color: #6E260E;
-    position: absolute;
-    height: 85%;
-    width: 15%;
-    border-radius: 5px 5px 0px 0px;
+.stackTwo {
+    border-right: 1px solid black;
+    border-left: 1px solid black;
 }
 
 .towerPlatform {
     background-color: #6E260E;
-    border: 1px solid red;
-    border-radius: 5px;
+    border-radius: 0px 0px 5px 5px;
     height: 40px;
     max-width: 60%;
     margin: 0 auto;
 }
 
-.towerHeight {
-    background-color: #F0E68C;
-    width: 35px;
-    border: 1px solid red;
-    border-radius: 5px;
-    padding: 3px;
-    font-size: 20px;
-}
-
-.aboutGame, .resetGame, .initGame, .modalClose, .winGameClose {
-    font-family: 'Cinzel', serif;
-    font-weight: 600;
-    background-color: #F0E68C;
-    border: 1px solid red;
-    border-radius: 7px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.listItem {
-    padding-top: 15px;
-}
-
 .disk {
+    position: relative;
     font-size: 25px;
-    border: 1px solid red;
     text-align: center;
     border-radius: 7px;
     padding: 2px;
@@ -150,7 +132,7 @@ h1 {
     cursor: pointer;
 }
 
-.modalAboutGame, .winGame {
+.modalAboutGame, .winGameModal {
     background-color: rgba(0,0,0,0.4);
     font-size: 15px;
     position: fixed;
@@ -167,11 +149,19 @@ h1 {
     background-color: #E1C16E;
     height: 230px;
     width: 600px;
-    border: 1px solid red;
     border-radius: 7px;
     margin: 150px auto;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
     padding: 10px;
+}
+
+.aboutGameHeader {
+    display: flex;
+}
+
+.aboutGameClose {
+    margin-left: 200px;
+    padding-top: 0;
 }
 
 .rulesHeader {
@@ -186,14 +176,18 @@ h1 {
     list-style-position: inside;
 }
 
-.winHeader {
+.listRules {
+    padding-top: 15px;
+}
+
+.winGameHeader {
     font-size: 50px;
     font-weight: 700;
     text-align: center;
     margin: 2px;
 }
 
-.winCompare {
+.winGameCompare {
     font-size: 18px;
     text-align: center;
     margin: 2px;
@@ -205,25 +199,15 @@ h1 {
     margin: 2px;
 }
 
-.winGameClose {
-    align-items: center;
-}
-
-.aboutGameHeader {
-    display: flex;
-}
-
-.modalClose {
-    margin-left: 200px;
-    padding-top: 0;
-}
-
 .winGameFooter {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid green;
     height: 50%;
+}
+
+.winGameClose {
+    align-items: center;
 }
 
 @media (max-width: 900px) {

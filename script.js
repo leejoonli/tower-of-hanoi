@@ -11,11 +11,11 @@ class DISK {
 /*----- app's state (variables) -----*/
 // game win condition
 let gameFinished;
-// variable number of disks
+// variable to store number of disks
 let stackHeight;
-// selected disk and tower
+// variables to store selected disk and stack
 let selectDisk;
-let selectTower;
+let selectStack;
 // stack arrays to store objects
 let stackOneArr;
 let stackTwoArr;
@@ -27,14 +27,14 @@ let count;
 const aboutGameBtn = document.querySelector('.aboutGame');
 const modalAboutGame = document.querySelector('.modalAboutGame');
 const moveCount = document.querySelector('.counter');
-const winGame = document.querySelector('.winGame');
-const countCompare = document.querySelector('.winCompare');
+const winGame = document.querySelector('.winGameModal');
+const countCompare = document.querySelector('.winGameCompare');
 const winGameCloseBtn = document.querySelector('.winGameClose');
-const closeAboutGameBtn = document.querySelector('.modalClose');
+const closeAboutGameBtn = document.querySelector('.aboutGameClose');
 const startGame = document.querySelector('.initGame');
 const resetGameBtn = document.querySelector('.resetGame');
-const towerHeight = document.querySelector('.towerHeight');
-const towerContainer = document.querySelector('.gameContainer');
+const inputHeight = document.querySelector('.inputHeight');
+const stackContainer = document.querySelector('.gameContainer');
 const stackOne = document.querySelector('.stackOne');
 const stackTwo = document.querySelector('.stackTwo');
 const stackThree = document.querySelector('.stackThree');
@@ -42,7 +42,7 @@ const stackThree = document.querySelector('.stackThree');
 /*----- event listeners -----*/
 startGame.addEventListener('click', init);
 resetGameBtn.addEventListener('click', reset);
-towerContainer.addEventListener('click', pickTower);
+stackContainer.addEventListener('click', pickStack);
 aboutGameBtn.addEventListener('click', displayAboutGameModal);
 closeAboutGameBtn.addEventListener('click', closeAboutGameModal);
 winGameCloseBtn.addEventListener('click', closeWinGame);
@@ -51,25 +51,13 @@ winGameCloseBtn.addEventListener('click', closeWinGame);
 // init function sets the game to the start with all the disks on the left side and ordered
 function init() {
     // https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/ removes all child elements if any
-    while(stackOne.firstChild && stackOne.firstChild.classList[0] !== 'testingsomething') {
-        // if(stackOne.firstChild.classList.contains('disk')) {
-        //     stackOne.removeChild(stackOne.firstChild);
-        // }
-        // else {
-        //     break;
-        // }
+    while(stackOne.firstChild) {
         stackOne.removeChild(stackOne.firstChild);
     }
     while(stackTwo.firstChild) {
-        // if(stackOne.firstChild.classList.contains('testingsomething')) {
-        //     break;
-        // }
         stackTwo.removeChild(stackTwo.firstChild);
     }
     while(stackThree.firstChild) {
-        // if(stackOne.firstChild.classList.contains('testingsomething')) {
-        //     break;
-        // }
         stackThree.removeChild(stackThree.firstChild);
     }
     // set win condition to false
@@ -79,8 +67,8 @@ function init() {
     stackTwoArr = [];
     stackThreeArr = [];
     count = 0;
-    if(towerHeight.value >= 3 && towerHeight.value <= 8) {
-        stackHeight = parseInt(towerHeight.value);
+    if(inputHeight.value >= 3 && inputHeight.value <= 8) {
+        stackHeight = parseInt(inputHeight.value);
     }
     else {
         return;
@@ -177,24 +165,24 @@ function clear() {
     count = 0;
 }
 
-function pickTower(event) {
+function pickStack(event) {
     // choose disk div element and store it in the app state variable
     if(event.target.classList.contains('disk') && event.target === event.target.parentElement.firstChild) {
         selectDisk = event.target;
     }
-    // choose disk tower div element to move selectDisk to the said disk tower
-    // depending on which tower element is chosen run a specific function
+    // choose disk stack div element to move selectDisk to the said disk stack
+    // depending on which stack element is chosen run a specific function
     if(event.target.classList.contains('stackOne')) {
-        tower1();
+        stack1(event);
         // sets the chosen disk back to false just in case.  I don't know if this actually does anything useful
         selectDisk = false;
     }
     else if(event.target.classList.contains('stackTwo')) {
-        tower2();
+        stack2(event);
         selectDisk = false;
     }
     else if(event.target.classList.contains('stackThree')) {
-        tower3();
+        stack3(event);
         selectDisk = false;
     }
     else {
@@ -202,12 +190,12 @@ function pickTower(event) {
     }
 }
 
-function tower1() {
-    // when the function runs set the selected tower div element to its app state variable
-    selectTower = event.target;
+function stack1() {
+    // when the function runs set the selected stack div element to its app state variable
+    selectStack = event.target;
     // check to know which stack the select disk div element is coming from
     if(selectDisk.parentElement.classList.contains('stackTwo')) {
-        // check to see if the chosen tower element and its corresponding array has any elements inside
+        // check to see if the chosen stack element and its corresponding array has any elements inside
         if(stackOneArr.length === 0 && selectDisk !== undefined) {
             // if no elements in the array, shift it in and remove it the array that it came from
             stackOneArr.unshift(stackTwoArr[0]);
@@ -217,7 +205,7 @@ function tower1() {
             // update html to reflect the current array
             stackOne.prepend(selectDisk);
         }
-        // check to see if the selected disk div element has a num value less than the num value of the first index of the selected tower array
+        // check to see if the selected disk div element has a num value less than the num value of the first index of the selected stack array
         else if(parseInt(selectDisk.classList[1]) < stackOneArr[0].num) {
             // if true, then shift it in and remove it from the array that it came from
             stackOneArr.unshift(stackTwoArr[0]);
@@ -252,8 +240,8 @@ function tower1() {
     }
 }
 
-function tower2() {
-    selectTower = event.target;
+function stack2() {
+    selectStack = event.target;
     if(selectDisk.parentElement.classList.contains('stackOne')) {
         if(stackTwoArr.length === 0 && selectDisk !== undefined) {
             stackTwoArr.unshift(stackOneArr[0]);
@@ -293,8 +281,8 @@ function tower2() {
     }
 }
 
-function tower3() {
-    selectTower = event.target;
+function stack3() {
+    selectStack = event.target;
     if(selectDisk.parentElement.classList.contains('stackOne')) {
         if(stackThreeArr.length === 0 && selectDisk !== undefined) {
             stackThreeArr.unshift(stackOneArr[0]);
