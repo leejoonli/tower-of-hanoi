@@ -29,7 +29,6 @@ Move the selected element based on the rules of the game.
 ![image](https://media.git.generalassemb.ly/user/40293/files/69733200-56b1-11ec-9da9-377747edf4cf)
 
 ## User Stories
-> Add user stories following the _As a [type of user], I want [what the user wants], so that [what it helps accomplish]_ format.
 - As a user, I want to be able to move the disks using the mouse.
 - As a user, I want to be able, if I make a valid move, place the disk onto whatever stack I move it to.
 - As a user, I want to be able, if I make an invalid move, place the disk I clicked on back to wherever it was originally clicked.
