@@ -5,9 +5,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;800&family=EB+Garamond:ital@0;1&family=Roboto:wght@100;300;400;700;900&display=swap');
+    </style>
+    <title>
+        Tower of Hanoi
+    </title>
 </head>
 <body>
+    <h1>
+        Tower of Hanoi
+    </h1>
+    <div class="btnBar">
+        <div class="aboutResetContainer">
+            <button class="aboutGame">
+                About Game
+            </button>
+            <button class="resetGame">
+                Reset
+            </button>
+        </div>
+        <div class="heightGoContainer">
+            <input class="inputHeight" type="number" value="3" min="3" max="8">
+            <button class="initGame">Go</button>
+        </div>
+    </div>
+    <div class="gameContainer">
+        <div class="stackOne towerSection">
+
+        </div>
+        <div class="stackTwo towerSection">
+
+        </div>
+        <div class="stackThree towerSection">
+
+        </div>
+    </div>
+    <div class="towerPlatform"></div>
+    <div class="modalAboutGame">
+        <div class="modalTextbox">
+            <div class="aboutGameHeader">
+                <h2 class="rulesHeader">
+                    Tower of Hanoi rules
+                </h2>
+                <button class="aboutGameClose">
+                    Close
+                </button>
+            </div>
+            <ol class="rules">
+                <li class="listRules">
+                    Click on a disk to select it.
+                </li>
+                <li class="listRules">
+                    Click on the tower space to move your selected disk.
+                </li>
+                <li class="listRules">
+                    Only one disk may be moved at a time.
+                </li>
+                <li class="listRules">
+                    Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty space.
+                </li>
+                <li class="listRules">
+                    No disk may be placed on top of a disk that is smaller than it.
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="winGameModal">
+        <div class="winGameTextbox">
+            <h2 class="winGameHeader">
+                You Win
+            </h2>
+            <h3 class="counter"></h3>
+            <p class="winGameCompare"></p>
+            <div class="winGameFooter">
+                <button class="winGameClose">
+                    Play Again
+                </button>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
