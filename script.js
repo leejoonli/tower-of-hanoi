@@ -9,19 +9,63 @@ class DISK {
 }
 
 // Auto solution stretch goal
-    // Simpler statement of iterative solution
+function solution() {
+    if(stackHeight % 2 === 0) {
         // For an even number of disks:
-
-        // make the legal move between pegs A and B (in either direction),
-        // make the legal move between pegs A and C (in either direction),
-        // make the legal move between pegs B and C (in either direction),
-        // repeat until complete.
+        while(stackThreeArr.length !== stackHeight) {
+            // make the legal move between pegs A and B (in either direction),
+            if(stackOneArr[0] < stackTwoArr[0] || stackTwoArr[0] !== undefined) {
+                console.log("move from 1 to 2");
+            }
+            else {
+                console.log("move from 2 to 1");
+            }
+            // make the legal move between pegs A and C (in either direction),
+            if(stackOneArr[0] < stackThreeArr[0] || stackOneArr[0] !== undefined) {
+                console.log("move from 1 to 3");
+            }
+            else {
+                console.log("move from 3 to 1");
+            }
+            // make the legal move between pegs B and C (in either direction),
+            if(stackTwoArr[0] < stackThreeArr[0] || stackThreeArr[0] !== undefined) {
+                console.log("move from 2 to 3");
+            }
+            else {
+                console.log("move from 3 to 2");
+            }
+            // repeat until complete.
+        }
+    }
+    else {
         // For an odd number of disks:
-
-        // make the legal move between pegs A and C (in either direction),
-        // make the legal move between pegs A and B (in either direction),
-        // make the legal move between pegs B and C (in either direction),
-        // repeat until complete.
+        while(stackThreeArr.length !== stackHeight) {
+            // make the legal move between pegs A and C (in either direction),
+            if(stackOneArr[0] < stackThreeArr[0] || stackThreeArr[0] !== undefined) {
+                console.log("move from 1 to 3");
+            }
+            else {
+                console.log("move from 3 to 1");
+            }
+            // make the legal move between pegs A and B (in either direction),
+            if(stackOneArr[0] < stackTwoArr[0] || stackTwoArr[0] !== undefined) {
+                console.log("move from 1 to 2");
+            }
+            else {
+                console.log("move from 2 to 1");
+            }
+            // make the legal move between pegs B and C (in either direction),
+            if(stackTwoArr[0] < stackThreeArr[0] || stackThreeArr[0] !== undefined) {
+                console.log("move from 2 to 3");
+            }
+            else {
+                console.log("move from 3 to 2");
+            }
+            // repeat until complete.
+        }
+    }
+    return;
+}
         // In each case, a total of 2n − 1 moves are made.
 
         // Equivalent iterative solution
