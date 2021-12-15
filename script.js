@@ -8,32 +8,36 @@ class DISK {
     }
 }
 
-// Auto solution stretch goal
+// Auto solution stretch goal https://en.wikipedia.org/wiki/Tower_of_Hanoi
 function solution() {
     if(stackHeight % 2 === 0) {
         // For an even number of disks:
         while(stackTwoArr.length !== 1) {
             // make the legal move between pegs A and B (in either direction),
-            if(stackOneArr[0] < stackTwoArr[0] || stackTwoArr[0] !== undefined) {
+            if(stackOneArr[0] < stackTwoArr[0] || stackTwoArr[0] === undefined) {
                 stackTwoArr.unshift(stackOneArr[0]);
                 stackOneArr.shift();
-                console.log("move from 1 to 2", stackTwoArr);
+                stackTwo.prepend(stackOne.firstChild);
+                console.log("move from 1 to 2");
             }
-            else {
+            else if(stackOneArr[0] > stackTwoArr[0] || stackOneArr[0] === undefined) {
+                stackOneArr.unshift(stackTwoArr[0]);
+                stackTwoArr.shift();
+                stackOne.prepend(stackTwo.firstChild);
                 console.log("move from 2 to 1");
             }
             // make the legal move between pegs A and C (in either direction),
             if(stackOneArr[0] < stackThreeArr[0] || stackOneArr[0] !== undefined) {
                 console.log("move from 1 to 3");
             }
-            else {
+            else if(stackOneArr[0] < stackThreeArr[0] || stackOneArr[0] !== undefined) {
                 console.log("move from 3 to 1");
             }
             // make the legal move between pegs B and C (in either direction),
             if(stackTwoArr[0] < stackThreeArr[0] || stackThreeArr[0] !== undefined) {
                 console.log("move from 2 to 3");
             }
-            else {
+            else if(stackOneArr[0] < stackThreeArr[0] || stackOneArr[0] !== undefined) {
                 console.log("move from 3 to 2");
             }
             // repeat until complete.
@@ -129,6 +133,7 @@ const stackContainer = document.querySelector('.gameContainer');
 const stackOne = document.querySelector('.stackOne');
 const stackTwo = document.querySelector('.stackTwo');
 const stackThree = document.querySelector('.stackThree');
+const solveGame = document.querySelector('.solveGame');
 
 /*----- event listeners -----*/
 startGame.addEventListener('click', init);
@@ -137,11 +142,13 @@ stackContainer.addEventListener('click', pickStack);
 aboutGameBtn.addEventListener('click', displayAboutGameModal);
 closeAboutGameBtn.addEventListener('click', closeAboutGameModal);
 winGameCloseBtn.addEventListener('click', closeWinGame);
+solveGame.addEventListener('click', solution);
 
 /*----- functions -----*/
 // init function sets the game to the start with all the disks on the left side and ordered
 function init() {
     clear();
+    // console.log(stackTwoArr[0]);
     // check to see if user has correct input value
     if(inputHeight.value >= 3 && inputHeight.value <= 8) {
         stackHeight = parseInt(inputHeight.value);
