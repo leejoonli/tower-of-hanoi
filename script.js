@@ -12,10 +12,12 @@ class DISK {
 function solution() {
     if(stackHeight % 2 === 0) {
         // For an even number of disks:
-        while(stackThreeArr.length !== stackHeight) {
+        while(stackTwoArr.length !== 1) {
             // make the legal move between pegs A and B (in either direction),
             if(stackOneArr[0] < stackTwoArr[0] || stackTwoArr[0] !== undefined) {
-                console.log("move from 1 to 2");
+                stackTwoArr.unshift(stackOneArr[0]);
+                stackOneArr.shift();
+                console.log("move from 1 to 2", stackTwoArr);
             }
             else {
                 console.log("move from 2 to 1");
