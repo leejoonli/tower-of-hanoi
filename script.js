@@ -12,34 +12,46 @@ class DISK {
 function solution() {
     if(stackHeight % 2 === 0) {
         // For an even number of disks:
-        while(stackTwoArr.length !== 1) {
-            // make the legal move between pegs A and B (in either direction),
+        while(stackTwoArr.length !== 1 && stackThreeArr.length !== 1) {
+            // make the legal move between pegs A and B (in either direction)
             if(stackOneArr[0] < stackTwoArr[0] || stackTwoArr[0] === undefined) {
                 stackTwoArr.unshift(stackOneArr[0]);
                 stackOneArr.shift();
                 stackTwo.prepend(stackOne.firstChild);
                 console.log("move from 1 to 2");
             }
-            else if(stackOneArr[0] > stackTwoArr[0] || stackOneArr[0] === undefined) {
+            else {
                 stackOneArr.unshift(stackTwoArr[0]);
                 stackTwoArr.shift();
                 stackOne.prepend(stackTwo.firstChild);
                 console.log("move from 2 to 1");
             }
-            // make the legal move between pegs A and C (in either direction),
-            if(stackOneArr[0] < stackThreeArr[0] || stackOneArr[0] !== undefined) {
+            // make the legal move between pegs A and C (in either direction)
+            if(stackOneArr[0] < stackThreeArr[0] || stackThreeArr[0] === undefined) {
+                stackThreeArr.unshift(stackOneArr[0]);
+                stackOneArr.shift();
+                stackThree.prepend(stackOne.firstChild);
                 console.log("move from 1 to 3");
             }
-            else if(stackOneArr[0] < stackThreeArr[0] || stackOneArr[0] !== undefined) {
+            else {
+                stackOneArr.unshift(stackThreeArr[0]);
+                stackThreeArr.shift();
+                stackOne.prepend(stackThree.firstChild);
                 console.log("move from 3 to 1");
             }
-            // make the legal move between pegs B and C (in either direction),
-            if(stackTwoArr[0] < stackThreeArr[0] || stackThreeArr[0] !== undefined) {
-                console.log("move from 2 to 3");
-            }
-            else if(stackOneArr[0] < stackThreeArr[0] || stackOneArr[0] !== undefined) {
-                console.log("move from 3 to 2");
-            }
+            // make the legal move between pegs B and C (in either direction)
+            // if(stackTwoArr[0] < stackThreeArr[0] || stackThreeArr[0] === undefined) {
+            //     stackOneArr.unshift(stackTwoArr[0]);
+            //     stackTwoArr.shift();
+            //     stackOne.prepend(stackTwo.firstChild);
+            //     console.log("move from 2 to 3");
+            // }
+            // else if(stackOneArr[0] < stackThreeArr[0] || stackOneArr[0] === undefined) {
+            //     stackOneArr.unshift(stackTwoArr[0]);
+            //     stackTwoArr.shift();
+            //     stackOne.prepend(stackTwo.firstChild);
+            //     console.log("move from 3 to 2");
+            // }
             // repeat until complete.
         }
     }
