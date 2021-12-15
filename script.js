@@ -95,23 +95,7 @@ winGameCloseBtn.addEventListener('click', closeWinGame);
 /*----- functions -----*/
 // init function sets the game to the start with all the disks on the left side and ordered
 function init() {
-    // https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/ removes all child elements if any
-    while(stackOne.firstChild) {
-        stackOne.removeChild(stackOne.firstChild);
-    }
-    while(stackTwo.firstChild) {
-        stackTwo.removeChild(stackTwo.firstChild);
-    }
-    while(stackThree.firstChild) {
-        stackThree.removeChild(stackThree.firstChild);
-    }
-    // set win condition and variables to false, empty all arrays, and set player move count to zero
-    gameFinished = false;
-    selectDisk = false;
-    stackOneArr = [];
-    stackTwoArr = [];
-    stackThreeArr = [];
-    count = 0;
+    clear();
     // check to see if user has correct input value
     if(inputHeight.value >= 3 && inputHeight.value <= 8) {
         stackHeight = parseInt(inputHeight.value);
@@ -178,6 +162,13 @@ function diskColor(i) {
 }
 
 function reset() {
+    clear();
+    render();
+}
+
+// clear function to reset everything
+function clear() {
+    // https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/ removes all child elements if any
     // removes all child elements of stackOne div, stackTwo div, and stackThree div
     while(stackOne.firstChild) {
         stackOne.removeChild(stackOne.firstChild);
@@ -189,26 +180,6 @@ function reset() {
         stackThree.removeChild(stackThree.firstChild);
     }
     // sets all current arrays to empty, current selected disk and win game to false, and resets the player move count
-    gameFinished = false;
-    selectDisk = false;
-    stackOneArr = [];
-    stackTwoArr = [];
-    stackThreeArr = [];
-    count = 0;
-    render();
-}
-
-// clear function to reset everything after the user has won
-function clear() {
-    while(stackOne.firstChild) {
-        stackOne.removeChild(stackOne.firstChild);
-    }
-    while(stackTwo.firstChild) {
-        stackTwo.removeChild(stackTwo.firstChild);
-    }
-    while(stackThree.firstChild) {
-        stackThree.removeChild(stackThree.firstChild);
-    }
     gameFinished = false;
     selectDisk = false;
     stackOneArr = [];
