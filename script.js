@@ -15,10 +15,12 @@ function solution() {
         while(stackThreeArr.length !== stackHeight) {
             // make the legal move between pegs A and B (in either direction)
             if(stackTwoArr[0] === undefined) {
-                stackTwoArr.unshift(stackOneArr[0]);
-                stackOneArr.shift();
-                stackTwo.prepend(stackOne.firstChild);
-                count++;
+                setTimeout(function() {
+                    stackTwoArr.unshift(stackOneArr[0]);
+                    stackOneArr.shift();
+                    stackTwo.prepend(stackOne.firstChild);
+                    count++;
+                }, 1000);
             }
             else if(stackOneArr[0] === undefined) {
                 stackOneArr.unshift(stackTwoArr[0]);
