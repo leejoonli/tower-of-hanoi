@@ -70,7 +70,7 @@ function solution() {
     }
     else {
         // For an odd number of disks:
-        while(stackThreeArr.length !== stackHeight) {
+        while(stackThreeArr.length !== 1 && stackTwoArr.length !== 1) {
             // make the legal move between pegs A and C (in either direction),
             if(stackThreeArr[0] === undefined) {
                 stackThreeArr.unshift(stackOneArr[0]);
@@ -97,18 +97,18 @@ function solution() {
                 console.log("move from 1 to 2");
             }
             // make the legal move between pegs A and B (in either direction),
-            // if(stackTwoArr[0] === undefined || stackOneArr[0].num  < stackTwoArr[0].num ) {
-            //     stackTwoArr.unshift(stackOneArr[0]);
-            //     stackOneArr.shift();
-            //     stackTwo.prepend(stackOne.firstChild);
-            //     console.log("move from 2 to 1");
-            // }
-            // else if(stackOneArr[0] === undefined || stackOneArr[0].num > stackTwoArr[0].num ) {
-            //     stackOneArr.unshift(stackTwoArr[0]);
-            //     stackTwoArr.shift();
-            //     stackOne.prepend(stackTwo.firstChild);
-            //     console.log("move from 1 to 2");
-            // }
+            if(stackTwoArr[0] === undefined || stackOneArr[0].num  < stackTwoArr[0].num ) {
+                stackTwoArr.unshift(stackOneArr[0]);
+                stackOneArr.shift();
+                stackTwo.prepend(stackOne.firstChild);
+                console.log("move from 2 to 1");
+            }
+            else if(stackOneArr[0] === undefined || stackOneArr[0].num > stackTwoArr[0].num ) {
+                stackOneArr.unshift(stackTwoArr[0]);
+                stackTwoArr.shift();
+                stackOne.prepend(stackTwo.firstChild);
+                console.log("move from 1 to 2");
+            }
             // // make the legal move between pegs B and C (in either direction),
             // if(stackThreeArr[0] !== undefined || stackTwoArr[0].num < stackThreeArr[0].num ) {
             //     stackThreeArr.unshift(stackTwoArr[0]);
@@ -124,7 +124,7 @@ function solution() {
             // }
             // repeat until complete.
         }
-        console.log(stackThreeArr);
+        console.log(stackTwoArr, stackThreeArr);
     }
     return;
 }
