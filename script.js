@@ -12,109 +12,123 @@ class DISK {
 function solution() {
     if(stackHeight % 2 === 0) {
         // For an even number of disks:
-        while(stackTwoArr.length !== 1 && stackThreeArr.length !== 1) {
+        while(stackThreeArr.length !== stackHeight) {
             // make the legal move between pegs A and B (in either direction)
-            if(stackOneArr[0] < stackTwoArr[0] || stackTwoArr[0] === undefined) {
+            if(stackTwoArr[0] === undefined) {
                 stackTwoArr.unshift(stackOneArr[0]);
                 stackOneArr.shift();
                 stackTwo.prepend(stackOne.firstChild);
                 console.log("move from 1 to 2");
             }
-            else {
+            else if(stackOneArr[0] === undefined) {
+                stackOneArr.unshift(stackTwoArr[0]);
+                stackTwoArr.shift();
+                stackOne.prepend(stackTwo.firstChild);
+                console.log("move from 2 to 1");
+            }
+            else if(stackOneArr[0].num < stackTwoArr[0].num) {
+                stackTwoArr.unshift(stackOneArr[0]);
+                stackOneArr.shift();
+                stackTwo.prepend(stackOne.firstChild);
+                console.log("move from 1 to 2");
+            }
+            else if(stackOneArr[0].num > stackTwoArr[0].num) {
                 stackOneArr.unshift(stackTwoArr[0]);
                 stackTwoArr.shift();
                 stackOne.prepend(stackTwo.firstChild);
                 console.log("move from 2 to 1");
             }
             // make the legal move between pegs A and C (in either direction)
-            if(stackOneArr[0] < stackThreeArr[0] || stackThreeArr[0] === undefined) {
+            if(stackThreeArr[0] === undefined || stackOneArr[0].num < stackThreeArr[0].num) {
                 stackThreeArr.unshift(stackOneArr[0]);
                 stackOneArr.shift();
                 stackThree.prepend(stackOne.firstChild);
                 console.log("move from 1 to 3");
             }
-            else {
+            else if(stackOneArr[0] === undefined || stackOneArr[0].num > stackThreeArr[0].num){
                 stackOneArr.unshift(stackThreeArr[0]);
                 stackThreeArr.shift();
                 stackOne.prepend(stackThree.firstChild);
                 console.log("move from 3 to 1");
             }
             // make the legal move between pegs B and C (in either direction)
-            // if(stackTwoArr[0] < stackThreeArr[0] || stackThreeArr[0] === undefined) {
-            //     stackOneArr.unshift(stackTwoArr[0]);
-            //     stackTwoArr.shift();
-            //     stackOne.prepend(stackTwo.firstChild);
-            //     console.log("move from 2 to 3");
-            // }
-            // else if(stackOneArr[0] < stackThreeArr[0] || stackOneArr[0] === undefined) {
-            //     stackOneArr.unshift(stackTwoArr[0]);
-            //     stackTwoArr.shift();
-            //     stackOne.prepend(stackTwo.firstChild);
-            //     console.log("move from 3 to 2");
-            // }
+            if(stackThreeArr[0] === undefined || stackTwoArr[0].num < stackThreeArr[0].num) {
+                stackThreeArr.unshift(stackTwoArr[0]);
+                stackTwoArr.shift();
+                stackThree.prepend(stackTwo.firstChild);
+                console.log("move from 2 to 3");
+            }
+            else if(stackTwoArr[0] === undefined || stackTwoArr[0].num > stackThreeArr[0].num){
+                stackTwoArr.unshift(stackThreeArr[0]);
+                stackThreeArr.shift();
+                stackTwo.prepend(stackThree.firstChild);
+                console.log("move from 3 to 2");
+            }
             // repeat until complete.
         }
+        console.log(stackThreeArr);
     }
     else {
         // For an odd number of disks:
         while(stackThreeArr.length !== stackHeight) {
             // make the legal move between pegs A and C (in either direction),
-            if(stackOneArr[0] < stackThreeArr[0] || stackThreeArr[0] !== undefined) {
+            if(stackThreeArr[0] === undefined) {
+                stackThreeArr.unshift(stackOneArr[0]);
+                stackOneArr.shift();
+                stackThree.prepend(stackOne.firstChild);
                 console.log("move from 1 to 3");
             }
-            else {
-                console.log("move from 3 to 1");
-            }
-            // make the legal move between pegs A and B (in either direction),
-            if(stackOneArr[0] < stackTwoArr[0] || stackTwoArr[0] !== undefined) {
+            else if(stackOneArr[0] === undefined) {
+                stackOneArr.unshift(stackThreeArr[0]);
+                stackThreeArr.shift();
+                stackOne.prepend(stackThree.firstChild);
                 console.log("move from 1 to 2");
             }
-            else {
-                console.log("move from 2 to 1");
+            else if(stackOneArr[0].num < stackThreeArr[0].num) {
+                stackThreeArr.unshift(stackOneArr[0]);
+                stackOneArr.shift();
+                stackThree.prepend(stackOne.firstChild);
+                console.log("move from 3 to 1");
             }
-            // make the legal move between pegs B and C (in either direction),
-            if(stackTwoArr[0] < stackThreeArr[0] || stackThreeArr[0] !== undefined) {
-                console.log("move from 2 to 3");
+            else if(stackOneArr[0].num < stackThreeArr[0].num ) {
+                stackOneArr.unshift(stackThreeArr[0]);
+                stackThreeArr.shift();
+                stackOne.prepend(stackThree.firstChild);
+                console.log("move from 1 to 2");
             }
-            else {
-                console.log("move from 3 to 2");
-            }
+            // make the legal move between pegs A and B (in either direction),
+            // if(stackTwoArr[0] === undefined || stackOneArr[0].num  < stackTwoArr[0].num ) {
+            //     stackTwoArr.unshift(stackOneArr[0]);
+            //     stackOneArr.shift();
+            //     stackTwo.prepend(stackOne.firstChild);
+            //     console.log("move from 2 to 1");
+            // }
+            // else if(stackOneArr[0] === undefined || stackOneArr[0].num > stackTwoArr[0].num ) {
+            //     stackOneArr.unshift(stackTwoArr[0]);
+            //     stackTwoArr.shift();
+            //     stackOne.prepend(stackTwo.firstChild);
+            //     console.log("move from 1 to 2");
+            // }
+            // // make the legal move between pegs B and C (in either direction),
+            // if(stackThreeArr[0] !== undefined || stackTwoArr[0].num < stackThreeArr[0].num ) {
+            //     stackThreeArr.unshift(stackTwoArr[0]);
+            //     stackTwoArr.shift();
+            //     stackThree.prepend(stackTwo.firstChild);
+            //     console.log("move from 2 to 3");
+            // }
+            // else if (stackTwoArr[0] !== undefined || stackTwoArr[0].num > stackThreeArr[0].num ) {
+            //     stackTwoArr.unshift(stackThreeArr[0]);
+            //     stackThreeArr.shift();
+            //     stackTwo.prepend(stackThree.firstChild);
+            //     console.log("move from 3 to 2");
+            // }
             // repeat until complete.
         }
+        console.log(stackThreeArr);
     }
     return;
 }
-        // In each case, a total of 2n − 1 moves are made.
-
-        // Equivalent iterative solution
-        // Another way to generate the unique optimal iterative solution:
-
-        // Number the disks 1 through n (largest to smallest).
-
-        // If n is odd, the first move is from peg A to peg C.
-        // If n is even, the first move is from peg A to peg B.
-        // Now, add these constraints:
-
-        // No odd disk may be placed directly on an odd disk.
-        // No even disk may be placed directly on an even disk.
-        // There will sometimes be two possible pegs: one will have disks, and the other will be empty. Place the disk on the non-empty peg.
-        // Never move a disk twice in succession.
-
-    // Recursive solution
-        // Illustration of a recursive solution for the Towers of Hanoi puzzle with 4 disks
-        // The key to solving a problem recursively is to recognize that it can be broken down into a collection of smaller sub-problems, to each of which that same general solving procedure that we are seeking applies, and the total solution is then found in some simple way from those sub-problems' solutions. Each of these created sub-problems being "smaller" guarantees that the base case(s) will eventually be reached. Thence, for the Towers of Hanoi:
-
-        // label the pegs A, B, C,
-        // let n be the total number of disks,
-        // number the disks from 1 (smallest, topmost) to n (largest, bottom-most).
-        // Assuming all n disks are distributed in valid arrangements among the pegs; assuming there are m top disks on a source peg, and all the rest of the disks are larger than m, so they can be safely ignored; to move m disks from a source peg to a target peg using a spare peg, without violating the rules:
-
-        // Move m − 1 disks from the source to the spare peg, by the same general solving procedure. Rules are not violated, by assumption. This leaves the disk m as a top disk on the source peg.
-        // Move the disk m from the source to the target peg, which is guaranteed to be a valid move, by the assumptions — a simple step.
-        // Move the m − 1 disks that we have just placed on the spare, from the spare to the target peg by the same general solving procedure, so they are placed on top of the disk m without violating the rules.
-        // The base case is to move 0 disks (in steps 1 and 3), that is, do nothing – which obviously doesn't violate the rules.
-        // The full Tower of Hanoi solution then consists of moving n disks from the source peg A to the target peg C, using B as the spare peg.
-        
+  
 /*----- app's state (variables) -----*/
 // game win condition
 let gameFinished;
