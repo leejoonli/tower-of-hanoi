@@ -8,6 +8,149 @@ class DISK {
     }
 }
 
+// Auto solution stretch goal https://en.wikipedia.org/wiki/Tower_of_Hanoi
+function solution() {
+    if(stackHeight % 2 === 0) {
+        // For an even number of disks:
+        while(stackThreeArr.length !== stackHeight) {
+            // make the legal move between pegs A and B (in either direction)
+            if(stackTwoArr[0] === undefined) {
+                stackTwoArr.unshift(stackOneArr[0]);
+                stackOneArr.shift();
+                stackTwo.prepend(stackOne.firstChild);
+                count++;
+            }
+            else if(stackOneArr[0] === undefined) {
+                stackOneArr.unshift(stackTwoArr[0]);
+                stackTwoArr.shift();
+                stackOne.prepend(stackTwo.firstChild);
+                count++;
+            }
+            else if(stackOneArr[0].num < stackTwoArr[0].num) {
+                stackTwoArr.unshift(stackOneArr[0]);
+                stackOneArr.shift();
+                stackTwo.prepend(stackOne.firstChild);
+                count++;
+            }
+            else if(stackOneArr[0].num > stackTwoArr[0].num) {
+                stackOneArr.unshift(stackTwoArr[0]);
+                stackTwoArr.shift();
+                stackOne.prepend(stackTwo.firstChild);
+                count++;
+            }
+            // make the legal move between pegs A and C (in either direction)
+            if(stackThreeArr[0] === undefined || stackOneArr[0].num < stackThreeArr[0].num) {
+                stackThreeArr.unshift(stackOneArr[0]);
+                stackOneArr.shift();
+                stackThree.prepend(stackOne.firstChild);
+                count++;
+            }
+            else if(stackOneArr[0] === undefined || stackOneArr[0].num > stackThreeArr[0].num){
+                stackOneArr.unshift(stackThreeArr[0]);
+                stackThreeArr.shift();
+                stackOne.prepend(stackThree.firstChild);
+                count++;
+            }
+            // make the legal move between pegs B and C (in either direction)
+            if(stackThreeArr[0] === undefined || stackTwoArr[0].num < stackThreeArr[0].num) {
+                stackThreeArr.unshift(stackTwoArr[0]);
+                stackTwoArr.shift();
+                stackThree.prepend(stackTwo.firstChild);
+                count++;
+            }
+            else if(stackTwoArr[0] === undefined || stackTwoArr[0].num > stackThreeArr[0].num){
+                stackTwoArr.unshift(stackThreeArr[0]);
+                stackThreeArr.shift();
+                stackTwo.prepend(stackThree.firstChild);
+                count++;
+            }
+            // repeat until complete.
+        }
+    }
+    else {
+        // For an odd number of disks:
+        while(stackThreeArr.length !== stackHeight) {
+            // make the legal move between pegs A and C (in either direction),
+            if(stackThreeArr[0] === undefined) {
+                stackThreeArr.unshift(stackOneArr[0]);
+                stackOneArr.shift();
+                stackThree.prepend(stackOne.firstChild);
+                count++
+            }
+            else if(stackOneArr[0] === undefined) {
+                stackOneArr.unshift(stackThreeArr[0]);
+                stackThreeArr.shift();
+                stackOne.prepend(stackThree.firstChild);
+                count++
+            }
+            else if(stackOneArr[0].num < stackThreeArr[0].num) {
+                stackThreeArr.unshift(stackOneArr[0]);
+                stackOneArr.shift();
+                stackThree.prepend(stackOne.firstChild);
+                count++
+            }
+            else if(stackOneArr[0].num > stackThreeArr[0].num ) {
+                stackOneArr.unshift(stackThreeArr[0]);
+                stackThreeArr.shift();
+                stackOne.prepend(stackThree.firstChild);
+                count++
+            }
+            // make the legal move between pegs A and B (in either direction),
+            if(stackTwoArr[0] === undefined && stackThreeArr.length !== stackHeight) {
+                stackTwoArr.unshift(stackOneArr[0]);
+                stackOneArr.shift();
+                stackTwo.prepend(stackOne.firstChild);
+                count++
+            }
+            else if(stackOneArr[0] === undefined && stackThreeArr.length !== stackHeight) {
+                stackOneArr.unshift(stackTwoArr[0]);
+                stackTwoArr.shift();
+                stackOne.prepend(stackTwo.firstChild);
+                count++
+            }
+            else if(stackThreeArr.length !== stackHeight && stackOneArr[0].num < stackTwoArr[0].num) {
+                stackTwoArr.unshift(stackOneArr[0]);
+                stackOneArr.shift();
+                stackTwo.prepend(stackOne.firstChild);
+                count++
+            }
+            else if(stackThreeArr.length !== stackHeight && stackOneArr[0].num > stackTwoArr[0].num) {
+                stackOneArr.unshift(stackTwoArr[0]);
+                stackTwoArr.shift();
+                stackOne.prepend(stackTwo.firstChild);
+                count++
+            }
+            // // make the legal move between pegs B and C (in either direction),
+            if(stackThreeArr[0] === undefined && stackThreeArr.length !== stackHeight) {
+                stackThreeArr.unshift(stackTwoArr[0]);
+                stackTwoArr.shift();
+                stackThree.prepend(stackTwo.firstChild);
+                count++
+            }
+            else if(stackTwoArr[0] === undefined && stackThreeArr.length !== stackHeight) {
+                stackTwoArr.unshift(stackThreeArr[0]);
+                stackThreeArr.shift();
+                stackTwo.prepend(stackThree.firstChild);
+                count++
+            }
+            else if(stackThreeArr.length !== stackHeight && stackTwoArr[0].num < stackThreeArr[0].num) {
+                stackThreeArr.unshift(stackTwoArr[0]);
+                stackTwoArr.shift();
+                stackThree.prepend(stackTwo.firstChild);
+                count++
+            }
+            else if(stackThreeArr.length !== stackHeight && stackTwoArr[0].num > stackThreeArr[0].num) {
+                stackTwoArr.unshift(stackThreeArr[0]);
+                stackThreeArr.shift();
+                stackTwo.prepend(stackThree.firstChild);
+                count++
+            }
+            // repeat until complete.
+        }
+    }
+    return;
+}
+  
 /*----- app's state (variables) -----*/
 // game win condition
 let gameFinished;
@@ -38,6 +181,7 @@ const stackContainer = document.querySelector('.gameContainer');
 const stackOne = document.querySelector('.stackOne');
 const stackTwo = document.querySelector('.stackTwo');
 const stackThree = document.querySelector('.stackThree');
+const solveGame = document.querySelector('.solveGame');
 
 /*----- event listeners -----*/
 startGame.addEventListener('click', init);
@@ -46,27 +190,13 @@ stackContainer.addEventListener('click', pickStack);
 aboutGameBtn.addEventListener('click', displayAboutGameModal);
 closeAboutGameBtn.addEventListener('click', closeAboutGameModal);
 winGameCloseBtn.addEventListener('click', closeWinGame);
+solveGame.addEventListener('click', solution);
 
 /*----- functions -----*/
 // init function sets the game to the start with all the disks on the left side and ordered
 function init() {
-    // https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/ removes all child elements if any
-    while(stackOne.firstChild) {
-        stackOne.removeChild(stackOne.firstChild);
-    }
-    while(stackTwo.firstChild) {
-        stackTwo.removeChild(stackTwo.firstChild);
-    }
-    while(stackThree.firstChild) {
-        stackThree.removeChild(stackThree.firstChild);
-    }
-    // set win condition and variables to false, empty all arrays, and set player move count to zero
-    gameFinished = false;
-    selectDisk = false;
-    stackOneArr = [];
-    stackTwoArr = [];
-    stackThreeArr = [];
-    count = 0;
+    clear();
+    // console.log(stackTwoArr[0]);
     // check to see if user has correct input value
     if(inputHeight.value >= 3 && inputHeight.value <= 8) {
         stackHeight = parseInt(inputHeight.value);
@@ -133,6 +263,13 @@ function diskColor(i) {
 }
 
 function reset() {
+    clear();
+    render();
+}
+
+// clear function to reset everything
+function clear() {
+    // https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/ removes all child elements if any
     // removes all child elements of stackOne div, stackTwo div, and stackThree div
     while(stackOne.firstChild) {
         stackOne.removeChild(stackOne.firstChild);
@@ -144,26 +281,6 @@ function reset() {
         stackThree.removeChild(stackThree.firstChild);
     }
     // sets all current arrays to empty, current selected disk and win game to false, and resets the player move count
-    gameFinished = false;
-    selectDisk = false;
-    stackOneArr = [];
-    stackTwoArr = [];
-    stackThreeArr = [];
-    count = 0;
-    render();
-}
-
-// clear function to reset everything after the user has won
-function clear() {
-    while(stackOne.firstChild) {
-        stackOne.removeChild(stackOne.firstChild);
-    }
-    while(stackTwo.firstChild) {
-        stackTwo.removeChild(stackTwo.firstChild);
-    }
-    while(stackThree.firstChild) {
-        stackThree.removeChild(stackThree.firstChild);
-    }
     gameFinished = false;
     selectDisk = false;
     stackOneArr = [];
